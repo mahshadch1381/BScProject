@@ -1,0 +1,43 @@
+
+// From any state, if unsafe area is detected, system will eventually reach safe state
+filter(forall, "unsafe_area" => P>=1 [X "unsafe_mode"])
+
+
+filter(forall, "safe_area" => P>=1 [X "safe_mode"])
+
+
+// From any state, if low energy is detected, robot will eventually recover
+filter(forall, "low_energy" => P>=1 [F "recovery_mode"])
+
+// From any state, proper distance is maintained
+filter(forall, P>=1 [G "robots_in_position"])
+
+// Maximum expected REWARD to reach area_checked state
+R=? [F "area_checked" {"all_robots_ready"}{max}]
+
+// Minimum expected REWARD to reach area_checked state
+R=? [F "area_checked" {"all_robots_ready"}{min}]
+
+R=? [F "area_checked" {! section_safe_to_check}{max}]
+
+// Expected steps until successful communication
+R=? [F "area_checked" {! connection_success}{max}]
+
+// Probability of completing exploration without energy depletion
+// Key Concepts in U (Until) Operator:
+//!"low_energy": All intermediate states must not satisfy "low_energy".
+//"area_checked": This state must eventually be reached for the condition to succeed.
+//The query will fail (probability 0) in scenarios such as:
+//The system enters a state where "low_energy" is true before "area_checked" is reached.
+//"area_checked" is never reached in the model.
+
+
+
+
+P>=1 [ F "area_checked" ]
+
+P>=1 [ F "all_robots_ready" ]
+
+
+
+

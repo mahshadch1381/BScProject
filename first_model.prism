@@ -1,0 +1,234 @@
+dtmc 
+
+const int total_sections ; 
+const int max_retries ;  
+const int max_distance ; 
+const int recovery_position ;
+
+const double p_explore_success ;   
+const double p_gas_detect ;       
+const double p_structure_safe;   
+const double p_gas_presence ;        
+const double p_structure_stable; 
+const double p_structure_checkable; 
+const double p_send_success;       
+ 
+const double p_send_success_lead ;  
+const double p_send_success_gas_detector ;  
+const int min_energy_lead; 
+const int min_energy_gas_detector ; 
+const int min_energy_safe_detector; 
+const int min_energy_leader ; 
+
+const int max_speed_lead ; 
+const int max_speed_gas_detector ; 
+const int max_speed_safe_detector ; 
+const int max_speed_leader ; 
+
+
+module environment 
+    section_index : [0..total_sections] init 0; 
+    gas_present : bool init false;                
+    structure_stable : bool init true;
+    can_check_section: bool init false;
+    m:[0..1] init 0;           
+    
+    [initialize_section1] (section_index < total_sections) &(m=0)->  
+        p_structure_checkable*p_gas_presence * p_structure_stable : (gas_present' = true) & (structure_stable' = true)&(can_check_section'=true)&(m'=1) + 
+        p_structure_checkable*p_gas_presence * (1 - p_structure_stable) : (gas_present' = true) & (structure_stable' = false)&(can_check_section'=true)&(m'=1)+ 
+        p_structure_checkable*(1 - p_gas_presence) * p_structure_stable : (gas_present' = false) & (structure_stable' = true)&(can_check_section'=true)&(m'=1) + 
+        p_structure_checkable*(1 - p_gas_presence) * (1 - p_structure_stable) : (gas_present' = false) & (structure_stable' = false)&(can_check_section'=true)&(m'=1)+
+        (1-p_structure_checkable)*p_gas_presence * p_structure_stable : (gas_present' = true) & (structure_stable' = true)&(can_check_section'=false)&(m'=1) + 
+         (1-p_structure_checkable)*p_gas_presence * (1 - p_structure_stable) : (gas_present' = true) & (structure_stable' = false)&(can_check_section'=false)&(m'=1)+ 
+         (1-p_structure_checkable)*(1 - p_gas_presence) * p_structure_stable : (gas_present' = false) & (structure_stable' = true)&(can_check_section'=false)&(m'=1) + 
+         (1-p_structure_checkable)*(1 - p_gas_presence) * (1 - p_structure_stable) : (gas_present' = false) & (structure_stable' = false)&(can_check_section'=false)&(m'=1);  
+ 
+    [next_section] (section_index < total_sections)&(m=1) -> (section_index' = section_index + 1)&(m'=0); 
+endmodule 
+
+module lead_robot 
+    z : [0..6] init 0;  
+    section : [0..total_sections] init 0; 
+    structure_safe_flag : bool init true; 
+    distance_to_leader : [0..max_distance] init 20; 
+    lead_retry_count : [0..max_retries] init 0;  
+    current_speed_lead : [0..max_speed_lead] init 20; 
+    current_energy_lead : [0..100] init 100; 
+    send_data : bool init false;
+
+    [initialize_section1] (z=0) & (section < total_sections) -> (z'=1); 
+   
+    [check_distance] (z=1) & (distance_to_leader <= max_distance) -> (z'=2); 
+    [check_distance] (z=1) & (distance_to_leader > max_distance) -> (distance_to_leader' = max_distance) & (z'=2); 
+ 
+    [check_env] (z=2) ->  
+        p_explore_success : (structure_safe_flag' = can_check_section) & (z'=3) + 
+        (1 - p_explore_success) : (structure_safe_flag' = !can_check_section) & (z'=3); 
+ 
+    [lead_safe_signal1] (z=3) & (structure_safe_flag = true) -> (z'=4); 
+    [lead_unsafe_signal1] (z=3) & (structure_safe_flag = false) -> (z'=4); 
+    
+    [checkconnection] (z=4) & (lead_retry_count < max_retries) ->    
+        p_send_success_lead : (z'=5) & (lead_retry_count'=0)&(send_data'=true) + 
+        (1 - p_send_success_lead) :  (lead_retry_count' = lead_retry_count + 1); 
+ 
+    [checkconnection] (z=4) & (lead_retry_count >= max_retries) ->  
+        (z'=6) & (lead_retry_count'=0);
+
+    [](current_energy_lead < min_energy_lead)->(z'=6) ;
+   
+    [out_lead_recovery](z=6)->(z'=5)&(current_energy_lead'=100)&(send_data'=true);
+    
+    [] (current_speed_lead > max_speed_lead) -> (current_speed_lead' = max_speed_lead); 
+
+    [next_section] (z=5) & (section < total_sections) -> (section' = section + 1) & (z'=0)&(structure_safe_flag' = false)&(send_data'=false); 
+endmodule
+
+
+
+module gas_detection_robot 
+    section_gas_check : [0..total_sections] init 0; 
+    gas_detected_flag : bool init false; 
+    send_gas_data : bool init false;
+    x : [0..5] init 0; 
+    distance_gas_detector_to_leader : [0..max_distance] init 20; 
+    current_speed_gas_detector : [0..max_speed_gas_detector] init 20; 
+    current_energy_gas_detector : [0..100] init 100;
+    
+ 
+    [initialize_section] (section_gas_check < total_sections) & (x=0) -> (x'=1); 
+    [](section_safe_to_check = false)&(x=1)->(x'=4);
+
+    [check_distance_gas_detecter] (x=1) & (distance_gas_detector_to_leader <= max_distance) -> (x'=2); 
+    [return_to_leader_gas_detecter] (x=1) & (distance_gas_detector_to_leader > max_distance) -> 
+        (distance_gas_detector_to_leader' = max_distance) & (x'=2); 
+ 
+    [check_gas] (x=2) -> 
+        p_gas_detect : (gas_detected_flag' = gas_present) & (x'=4)&(send_gas_data'=true) + 
+        (1 - p_gas_detect) : (gas_detected_flag' = !gas_present) & (x'=4)&(send_gas_data'=true); 
+   
+
+    [] (current_energy_gas_detector < min_energy_gas_detector) -> (x'=5); 
+
+    [out_gas_recovery](x=5)->(x'=4)&(current_energy_gas_detector'=100);
+    
+    [] (current_speed_gas_detector > max_speed_gas_detector) -> 
+        (current_speed_gas_detector' = max_speed_gas_detector);
+
+    [next_section] (x=4) & (section_gas_check < total_sections) -> 
+        (section_gas_check' = section_gas_check + 1) & (x'=0)&(gas_detected_flag' = false)&(send_gas_data'=false); 
+endmodule 
+
+module safety_assessment_robot 
+    section_safety_check : [0..total_sections] init 0; 
+    structure_ok_flag : bool init true; 
+    send_structure_data : bool init false;
+    distance_safety_assessment_to_leader : [0..max_distance] init 20; 
+    y : [0..5] init 0; 
+    current_speed_safe_detector : [0..max_speed_safe_detector] init 20; 
+    current_energy_safe_detector : [0..100] init 100; 
+ 
+    [initialize_section] (section_safety_check < total_sections) & (y=0) -> (y'=1); 
+    [](section_safe_to_check = false)&(y=1)->(y'=4);
+
+    [check_distance_safety_assessment] (y=1) & (distance_safety_assessment_to_leader <= max_distance) -> (y'=2); 
+    [return_to_leader_safety_assessment] (y=1) & (distance_safety_assessment_to_leader > max_distance) -> 
+        (distance_safety_assessment_to_leader' = max_distance) & (y'=2); 
+ 
+    [check_safety]  (y=2) ->  
+        p_structure_safe : (structure_ok_flag' = structure_stable) & (y'=4)&(send_structure_data'=true) + 
+        (1 - p_structure_safe) : (structure_ok_flag' = !structure_stable) & (y'=4)&(send_structure_data'=true); 
+ 
+    [] (current_energy_safe_detector < min_energy_safe_detector) -> (y'=5); 
+
+    [out_safe_recovery](y=5)->(y'=4)&(current_energy_safe_detector'=100);
+
+[] (current_speed_safe_detector > max_speed_safe_detector) -> 
+        (current_speed_safe_detector' = max_speed_safe_detector); 
+
+    [next_section] (y=4) & (section_safety_check < total_sections) -> 
+        (section_safety_check' = section_safety_check + 1) & (y'=0)&(structure_ok_flag' = true)&(send_structure_data'=false); 
+endmodule
+
+
+module leader_robot 
+    current_section : [0..total_sections] init 0; 
+    section_safe_to_check : bool init false; 
+    section_safe : bool init false; 
+    leader_retry_count : [0..max_retries] init 0;  
+    sending_flag : bool init false;             
+    connection_success : bool init false;
+    k : [0..6] init 0; 
+    current_speed_leader : [0..max_speed_leader] init 20; 
+    current_energy_leader : [0..100] init 100; 
+    wait : [0..20] init 0;
+   
+    [wait_to_get_from_lead](send_data=false) & (k=0)&(wait<20)->(wait'=wait+1);
+    [wait_to_get_from_lead](send_data=false) & (k=0)&(wait>=20)->(wait'=0)&(k'=6);
+
+    [lead_safe_signal] (current_section < total_sections)&(structure_safe_flag = true)&(send_data=true) & (k=0) ->  
+        (section_safe_to_check' = true) & (k'=1)&(wait'=0) ;
+ 
+    [lead_unsafe_signal] (current_section < total_sections)&(structure_safe_flag = false)&(send_data=true) & (k=0) ->  
+        (section_safe_to_check' = false) & (k'=2)&(wait'=0);
+    
+    [initialize_section](k=1)|(k=2)->true; 
+     
+    [wait_to_get](wait<20) &(k=1)&((send_gas_data=false)|(send_structure_data=false))->(wait'=wait+1);
+    [wait_to_get](wait=20) &(k=1)&((send_gas_data=false)|(send_structure_data=false))->(wait'=0)&(k'=6);
+
+    [safe_signal12]  (send_gas_data=true)&(send_structure_data=true)&(gas_detected_flag = false)&(structure_ok_flag = true)&(k=1)  -> 
+        (section_safe' = true) & (k'=3) & (sending_flag' = true); 
+    
+    [unsafe_signal12] (send_gas_data=true)&(send_structure_data=true)&((gas_detected_flag = true)|(structure_ok_flag = false)) &(k=1)  -> 
+        (section_safe' = false) & (k'=3) & (sending_flag' = true); 
+ 
+    [send_data] (k=3) & (sending_flag=true) & (leader_retry_count < max_retries) ->  
+        p_send_success : (connection_success' = true) & (k'=4) & (leader_retry_count'=0) + 
+        (1 - p_send_success) : (connection_success' = false) & (leader_retry_count' = leader_retry_count + 1);   
+  
+    [send_failure] (k=3) & (leader_retry_count >= max_retries) ->  
+        (connection_success' = false) & (sending_flag' = false) & (k'=5); 
+  
+    
+    [check_energy] (current_energy_leader < min_energy_leader) -> (k'=5); 
+
+    [outrecovery](k=5)->(k'=4)&(connection_success' = true)&(current_energy_leader' = 100);
+    [handle_wait_problom_with_center](k=6)-> (k'=0);//solve and reset with out control
+    [] (current_speed_leader > max_speed_leader) -> (current_speed_leader' = max_speed_leader); 
+
+    [next_section] ((k=4) | (k=2)) & (current_section < total_sections)-> 
+        (current_section' = current_section + 1) & (leader_retry_count'=0) & 
+        (connection_success'=false) & (k'=0)&(section_safe' = false)&(section_safe_to_check' = false) & (sending_flag' = false)&(wait'=0); 
+endmodule 
+
+
+
+rewards "safe_exploration" 
+    [next_section] section_safe & section_index < total_sections & (!gas_detected_flag & structure_ok_flag) : 2;
+    [next_section] !section_safe & section_index < total_sections &(gas_detected_flag | !structure_ok_flag) : 2;
+    [next_section] section_safe_to_check = false :1;
+    [initialize_section] section_index < total_sections : 0;// No rewards after completion
+    [initialize_section] section_index = total_sections : 0; // No rewards after completion
+endrewards 
+
+
+
+label "unsafe_area" =   (gas_detected_flag | !structure_ok_flag)&(k=1)&(send_gas_data=true)&(send_structure_data=true);
+label "safe_area" =   (!gas_detected_flag & structure_ok_flag)&(k=1)&(send_gas_data=true)&(send_structure_data=true);
+label "area_checked" = section = total_sections & section_gas_check = total_sections & 
+                      section_safety_check = total_sections & current_section = total_sections;
+label "low_energy" = current_energy_lead < min_energy_lead | 
+                    current_energy_gas_detector < min_energy_gas_detector |
+                    current_energy_safe_detector < min_energy_safe_detector |
+                    current_energy_leader < min_energy_leader;
+label "unsafe_mode" = !section_safe;
+label "safe_mode" = section_safe;
+label "recovery_mode"= z=6 & x=0 & y=0 & k=5;
+label "all_robots_ready" = (z=5) & x=4 & y=4 & ((k=4) | (k=2));
+label "robots_in_position" = (distance_to_leader <= max_distance) & 
+                           (distance_gas_detector_to_leader <= max_distance) & 
+                           (distance_safety_assessment_to_leader <= max_distance);
+label "sending_flag" = sending_flag = true;
+
+
