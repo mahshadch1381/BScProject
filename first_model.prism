@@ -90,32 +90,32 @@ module gas_detection_robot
     section_gas_check : [0..total_sections] init 0; 
     gas_detected_flag : bool init false; 
     send_gas_data : bool init false;
-    x : [0..5] init 0; 
+    x : [0..4] init 0; 
     distance_gas_detector_to_leader : [0..max_distance] init 20; 
     current_speed_gas_detector : [0..max_speed_gas_detector] init 20; 
     current_energy_gas_detector : [0..100] init 100;
     
  
     [initialize_section] (section_gas_check < total_sections) & (x=0) -> (x'=1); 
-    [](section_safe_to_check = false)&(x=1)->(x'=4);
+    [](section_safe_to_check = false)&(x=1)->(x'=3);
 
     [check_distance_gas_detecter] (x=1) & (distance_gas_detector_to_leader <= max_distance) -> (x'=2); 
     [return_to_leader_gas_detecter] (x=1) & (distance_gas_detector_to_leader > max_distance) -> 
         (distance_gas_detector_to_leader' = max_distance) & (x'=2); 
  
     [check_gas] (x=2) -> 
-        p_gas_detect : (gas_detected_flag' = gas_present) & (x'=4)&(send_gas_data'=true) + 
-        (1 - p_gas_detect) : (gas_detected_flag' = !gas_present) & (x'=4)&(send_gas_data'=true); 
+        p_gas_detect : (gas_detected_flag' = gas_present) & (x'=3)&(send_gas_data'=true) + 
+        (1 - p_gas_detect) : (gas_detected_flag' = !gas_present) & (x'=3)&(send_gas_data'=true); 
    
 
-    [] (current_energy_gas_detector < min_energy_gas_detector) -> (x'=5); 
+    [] (current_energy_gas_detector < min_energy_gas_detector)& (x=3) -> (x'=4); 
 
-    [out_gas_recovery](x=5)->(x'=4)&(current_energy_gas_detector'=100);
+    [out_gas_recovery](x=4)->(x'=3)&(current_energy_gas_detector'=100);
     
     [] (current_speed_gas_detector > max_speed_gas_detector) -> 
         (current_speed_gas_detector' = max_speed_gas_detector);
 
-    [next_section] (x=4) & (section_gas_check < total_sections) -> 
+    [next_section] (x=3) & (section_gas_check < total_sections) -> 
         (section_gas_check' = section_gas_check + 1) & (x'=0)&(gas_detected_flag' = false)&(send_gas_data'=false); 
 endmodule 
 
@@ -124,29 +124,29 @@ module safety_assessment_robot
     structure_ok_flag : bool init true; 
     send_structure_data : bool init false;
     distance_safety_assessment_to_leader : [0..max_distance] init 20; 
-    y : [0..5] init 0; 
+    y : [0..4] init 0; 
     current_speed_safe_detector : [0..max_speed_safe_detector] init 20; 
     current_energy_safe_detector : [0..100] init 100; 
  
     [initialize_section] (section_safety_check < total_sections) & (y=0) -> (y'=1); 
-    [](section_safe_to_check = false)&(y=1)->(y'=4);
+    [](section_safe_to_check = false)&(y=1)->(y'=3);
 
     [check_distance_safety_assessment] (y=1) & (distance_safety_assessment_to_leader <= max_distance) -> (y'=2); 
     [return_to_leader_safety_assessment] (y=1) & (distance_safety_assessment_to_leader > max_distance) -> 
         (distance_safety_assessment_to_leader' = max_distance) & (y'=2); 
  
     [check_safety]  (y=2) ->  
-        p_structure_safe : (structure_ok_flag' = structure_stable) & (y'=4)&(send_structure_data'=true) + 
-        (1 - p_structure_safe) : (structure_ok_flag' = !structure_stable) & (y'=4)&(send_structure_data'=true); 
+        p_structure_safe : (structure_ok_flag' = structure_stable) & (y'=3)&(send_structure_data'=true) + 
+        (1 - p_structure_safe) : (structure_ok_flag' = !structure_stable) & (y'=3)&(send_structure_data'=true); 
  
-    [] (current_energy_safe_detector < min_energy_safe_detector) -> (y'=5); 
+    [] (y=3) &(current_energy_safe_detector < min_energy_safe_detector) -> (y'=4); 
 
-    [out_safe_recovery](y=5)->(y'=4)&(current_energy_safe_detector'=100);
+    [out_safe_recovery](y=4)->(y'=3)&(current_energy_safe_detector'=100);
 
 [] (current_speed_safe_detector > max_speed_safe_detector) -> 
         (current_speed_safe_detector' = max_speed_safe_detector); 
 
-    [next_section] (y=4) & (section_safety_check < total_sections) -> 
+    [next_section] (y=3) & (section_safety_check < total_sections) -> 
         (section_safety_check' = section_safety_check + 1) & (y'=0)&(structure_ok_flag' = true)&(send_structure_data'=false); 
 endmodule
 
@@ -163,8 +163,9 @@ module leader_robot
     current_energy_leader : [0..100] init 100; 
     wait : [0..20] init 0;
    
-    [wait_to_get_from_lead](send_data=false) & (k=0)&(wait<20)->(wait'=wait+1);
-    [wait_to_get_from_lead](send_data=false) & (k=0)&(wait>=20)->(wait'=0)&(k'=6);
+   
+    [wait_to_get_from_lead](send_data=false) & (current_section < total_sections) & (k=0)&(wait<20)->(wait'=wait+1);
+    [wait_to_get_from_lead](send_data=false)  & (current_section < total_sections)&(k=0)&(wait>=20)->(wait'=0)&(k'=6);
 
     [lead_safe_signal] (current_section < total_sections)&(structure_safe_flag = true)&(send_data=true) & (k=0) ->  
         (section_safe_to_check' = true) & (k'=1)&(wait'=0) ;
@@ -205,9 +206,9 @@ endmodule
 
 
 rewards "safe_exploration" 
-    [next_section] section_safe & section_index < total_sections & (!gas_detected_flag & structure_ok_flag) : 2;
-    [next_section] !section_safe & section_index < total_sections &(gas_detected_flag | !structure_ok_flag) : 2;
-    [next_section] section_safe_to_check = false :1;
+    [next_section] section_safe & section_index < total_sections & (!gas_detected_flag & structure_ok_flag) : 5+(20-wait);
+    [next_section] !section_safe & section_index < total_sections &(gas_detected_flag | !structure_ok_flag) : 5+(20-wait);
+    [next_section] section_safe_to_check = false :1+(20-wait);
     [initialize_section] section_index < total_sections : 0;// No rewards after completion
     [initialize_section] section_index = total_sections : 0; // No rewards after completion
 endrewards 
@@ -225,7 +226,7 @@ label "low_energy" = current_energy_lead < min_energy_lead |
 label "unsafe_mode" = !section_safe;
 label "safe_mode" = section_safe;
 label "recovery_mode"= z=6 & x=0 & y=0 & k=5;
-label "all_robots_ready" = (z=5) & x=4 & y=4 & ((k=4) | (k=2));
+label "all_robots_ready" = (z=0) & x=0 & y=0 & (k=0);
 label "robots_in_position" = (distance_to_leader <= max_distance) & 
                            (distance_gas_detector_to_leader <= max_distance) & 
                            (distance_safety_assessment_to_leader <= max_distance);
