@@ -4,7 +4,7 @@ import subprocess
 model_file = r"C:\Aterm9\Karshensi_Project\first_model.prism"
 properties_file = r"C:\Aterm9\Karshensi_Project\properties.props"
 
-# Define parameter values (your constants)
+
 constants = {
     "total_sections": 10,
     "max_retries": 3,
@@ -29,18 +29,25 @@ constants = {
     "max_speed_leader": 122,
 }
 
-# Construct the parameter string for PRISM constants
+
 param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
 
-# Define the PRISM command
+
 prism_command = [
     r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",  # Change to PRISM bin directory
     r"prism.bat", model_file, properties_file, "-const", param_str  # Execute the PRISM command
 ]
 
-# Run the PRISM command and capture the output
 try:
     result = subprocess.run(' '.join(prism_command), shell=True, capture_output=True, text=True, check=True)
-    print("PRISM Output:\n", result.stdout)  # Print the standard output from PRISM
+    
+   
+    output = result.stdout
+
+   
+    for line in output.splitlines():
+        if "Result" in line:
+            print(line)  
+
 except subprocess.CalledProcessError as e:
     print("Error running PRISM:\n", e.stderr)
