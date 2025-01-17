@@ -2,13 +2,11 @@ import subprocess
 import matplotlib.pyplot as plt
 
 
+model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
+properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
 
 
-model_file = r"C:\Aterm9\Karshensi_Project\first_model.prism"
-properties_file = r"C:\Aterm9\Karshensi_Project\properties.props"
-
-
-cost_file_path = r"C:\Aterm9\Karshensi_Project\costs.txt"
+cost_file_path = r"C:\Aterm9\Karshensi_Project\all\costs.txt"
 
 
 def parse_cost_line(line):
@@ -35,31 +33,24 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data):
         
         output = result.stdout
         propertyNumber = 1
-        total_section = counterGroup 
+        total_section = cost_group["total_sections"]
         for line in output.splitlines():
             if "Result" in line:
                 print(f"Result for cost group {counterGroup} , property { propertyNumber} : {line}")
                 if propertyNumber == 5:
-                    # Extract property 5 value
                     property_5 = float(line.split(":")[1].strip())
                     result_data['group'].append(total_section)
                     result_data['property_5'].append(property_5)
                 elif propertyNumber == 7:
-                    # Extract property 7 value
                     property_7 = float(line.split(":")[1].strip())
                     result_data['property_7'].append(property_7)
-                elif propertyNumber == 8:
-                    # Extract property 8 value
-                    property_8 = float(line.split(":")[1].strip())
-                    result_data['property_8'].append(property_8)
-                
+         
              
                 propertyNumber += 1
     
     except subprocess.CalledProcessError as e:
         print(f"Error running PRISM with cost group {counterGroup}:\n", e.stderr)
 
-# Initialize data containers for plotting
 result_data = {
     'group': [],
     'property_5': [],
@@ -77,35 +68,30 @@ with open(cost_file_path, 'r') as cost_file:
         counterGroup += 1 
 
 
-plt.figure(figsize=(20, 5))
+plt.figure(figsize=(12, 6)) 
 
-
-plt.subplot(131)
+plt.subplot(121)  
 plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
-plt.xlabel('Cost Group (Total Section)')
-plt.ylabel('Property 5')
-plt.title('Cost Group vs Property 5')
+plt.xlabel('Total Sections')
+plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
+plt.title('Property 5')
 plt.grid(True)
 plt.legend()
 
 
-plt.subplot(132)
+plt.subplot(122)
 plt.plot(result_data['group'], result_data['property_7'], marker='o', color='g', label='Property 7')
-plt.xlabel('Cost Group (Total Section)')
-plt.ylabel('Property 7')
-plt.title('Cost Group vs Property 7')
+plt.xlabel('Total Sections')
+plt.ylabel('Max reward for :F "area_checked" {!section_safe_to_check}')
+plt.title('Property 7')
 plt.grid(True)
 plt.legend()
-
-
-plt.subplot(133)
-plt.plot(result_data['group'], result_data['property_8'], marker='o', color='r', label='Property 8')
-plt.xlabel('Cost Group (Total Section)')
-plt.ylabel('Property 8')
-plt.title('Cost Group vs Property 8')
-plt.grid(True)
-plt.legend()
-
 
 plt.tight_layout()
-plt.show()
+plt.subplots_adjust(wspace=0.4) 
+
+
+output_file = "plot_results1.png" 
+plt.savefig(output_file, format='png', dpi=300) 
+
+plt.close()
