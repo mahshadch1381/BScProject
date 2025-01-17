@@ -20,8 +20,7 @@ R=? [F "area_checked" {"all_robots_ready"}{min}]
 
 R=? [F "area_checked" {! section_safe_to_check}{max}]
 
-// Expected steps until successful communication
-R=? [F "area_checked" {! connection_success}{max}]
+
 
 // Probability of completing exploration without energy depletion
 // Key Concepts in U (Until) Operator:
