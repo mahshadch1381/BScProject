@@ -161,22 +161,24 @@ module leader_robot
     k : [0..6] init 0; 
     current_speed_leader : [0..max_speed_leader] init 20; 
     current_energy_leader : [0..100] init 100; 
-    wait : [0..20] init 0;
+    wait : [0..40] init 0;
+
+  
    
    
     [wait_to_get_from_lead](send_data=false) & (current_section < total_sections) & (k=0)&(wait<20)->(wait'=wait+1);
     [wait_to_get_from_lead](send_data=false)  & (current_section < total_sections)&(k=0)&(wait>=20)->(wait'=0)&(k'=6);
-
+    
     [lead_safe_signal] (current_section < total_sections)&(structure_safe_flag = true)&(send_data=true) & (k=0) ->  
-        (section_safe_to_check' = true) & (k'=1)&(wait'=0) ;
+        (section_safe_to_check' = true)&(k'=1) ;
  
     [lead_unsafe_signal] (current_section < total_sections)&(structure_safe_flag = false)&(send_data=true) & (k=0) ->  
-        (section_safe_to_check' = false) & (k'=2)&(wait'=0);
+        (section_safe_to_check' = false)& (k'=2);
     
     [initialize_section](k=1)|(k=2)->true; 
      
-    [wait_to_get](wait<20) &(k=1)&((send_gas_data=false)|(send_structure_data=false))->(wait'=wait+1);
-    [wait_to_get](wait=20) &(k=1)&((send_gas_data=false)|(send_structure_data=false))->(wait'=0)&(k'=6);
+    [wait_to_get](wait<40) &(k=1)&((send_gas_data=false)|(send_structure_data=false))->(wait'=wait+1);
+    [wait_to_get](wait=40) &(k=1)&((send_gas_data=false)|(send_structure_data=false))->(wait'=0)&(k'=6);
 
     [safe_signal12]  (send_gas_data=true)&(send_structure_data=true)&(gas_detected_flag = false)&(structure_ok_flag = true)&(k=1)  -> 
         (section_safe' = true) & (k'=3) & (sending_flag' = true); 
@@ -195,6 +197,7 @@ module leader_robot
     [check_energy] (current_energy_leader < min_energy_leader) -> (k'=5); 
 
     [outrecovery](k=5)->(k'=4)&(connection_success' = true)&(current_energy_leader' = 100);
+
     [handle_wait_problom_with_center](k=6)-> (k'=0);//solve and reset with out control
     [] (current_speed_leader > max_speed_leader) -> (current_speed_leader' = max_speed_leader); 
 
@@ -206,9 +209,9 @@ endmodule
 
 
 rewards "safe_exploration" 
-    [next_section] section_safe & section_index < total_sections & (!gas_detected_flag & structure_ok_flag) : 5+(20-wait);
-    [next_section] !section_safe & section_index < total_sections &(gas_detected_flag | !structure_ok_flag) : 5+(20-wait);
-    [next_section] section_safe_to_check = false :1+(20-wait);
+    [next_section] section_safe & section_index < total_sections & (!gas_detected_flag & structure_ok_flag) : 50+(40-wait);
+    [next_section] !section_safe & section_index < total_sections &(gas_detected_flag | !structure_ok_flag) : 30+(40-wait);
+    [next_section] section_safe_to_check = false :10+(40-wait);
     [initialize_section] section_index < total_sections : 0;// No rewards after completion
     [initialize_section] section_index = total_sections : 0; // No rewards after completion
 endrewards 
@@ -231,5 +234,5 @@ label "robots_in_position" = (distance_to_leader <= max_distance) &
                            (distance_gas_detector_to_leader <= max_distance) & 
                            (distance_safety_assessment_to_leader <= max_distance);
 label "sending_flag" = sending_flag = true;
-
+label "failure" =  leader_retry_count >= max_retries|lead_retry_count >= max_retries;
 
