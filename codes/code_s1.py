@@ -160,7 +160,7 @@ try:
  
     plt.figure(figsize=(10, 6))
     sns.heatmap(df_heatmap, annot=True, cmap='coolwarm', cbar=False, linewidths=0.5, fmt="g")
-    plt.title('Heatmap of Flags Across Sections')
+    plt.title('scenario1: where gas is in the mine')
     plt.ylabel('Section')
     plt.xlabel('Condition')
 

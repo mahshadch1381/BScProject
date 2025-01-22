@@ -8,13 +8,15 @@ const int recovery_position ;
 const double p_explore_success ;   
 const double p_gas_detect ;       
 const double p_structure_safe;   
+
 const double p_gas_presence ;        
 const double p_structure_stable; 
 const double p_structure_checkable; 
+
 const double p_send_success;       
- 
 const double p_send_success_lead ;  
-const double p_send_success_gas_detector ;  
+const double p_send_success_gas_detector ; 
+
 const int min_energy_lead; 
 const int min_energy_gas_detector ; 
 const int min_energy_safe_detector; 
@@ -209,9 +211,9 @@ endmodule
 
 
 rewards "safe_exploration" 
-    [next_section] section_safe & section_index < total_sections & (!gas_detected_flag & structure_ok_flag) : 50+(40-wait);
-    [next_section] !section_safe & section_index < total_sections &(gas_detected_flag | !structure_ok_flag) : 30+(40-wait);
-    [next_section] section_safe_to_check = false :10+(40-wait);
+    [next_section] section_safe & section_index < total_sections & (!gas_detected_flag & structure_ok_flag) : 2+(40-wait)/10;
+    [next_section] !section_safe & section_index < total_sections &(gas_detected_flag | !structure_ok_flag) : 2+(40-wait)/10;
+    [next_section] section_safe_to_check = false :1+(40-wait)/10;
     [initialize_section] section_index < total_sections : 0;// No rewards after completion
     [initialize_section] section_index = total_sections : 0; // No rewards after completion
 endrewards 

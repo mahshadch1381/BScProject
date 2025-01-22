@@ -4,11 +4,7 @@ import matplotlib.pyplot as plt
 
 model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
 properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
-
-
-cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts3.txt"
-
-
+cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts5.txt"
 def parse_cost_line(line):
     param_dict = {}
     for param in line.strip().split(","):
@@ -33,7 +29,7 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data):
         
         output = result.stdout
         propertyNumber = 1
-        p_explore_success = cost_group["p_gas_detect"]
+        p_explore_success = cost_group["max_retries"]
         for line in output.splitlines():
             if "Result" in line:
                 print(f"Result for cost group {counterGroup} , property { propertyNumber} : {line}")
@@ -73,22 +69,22 @@ plt.figure(figsize=(10, 6))
 # Plot Property 5
 plt.subplot(121)
 plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
-plt.xlabel('p_gas_detect')
+plt.xlabel('max_retries')
 plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
-plt.title('probability of success of the gas detector vs max reward')
+plt.title('maximum number of resends vs max reward')
 plt.grid(True)
 plt.legend()
 
 # Table for Property 5
 plt.subplot(122)
 plt.axis('off')
-columns = ["p_gas_detect", "max reward"]
+columns = ["max_retries", "max reward"]
 data = list(zip(result_data['group'], result_data['property_5']))
 plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
-plt.title("p_gas_detect , max reward")
+plt.title("max_retries , max reward")
 plt.tight_layout()
 
-output_file = "plots/plot_results3.png" 
+output_file = "plots/plot_results5.png" 
 plt.savefig(output_file, format='png', dpi=300) 
 
 plt.close()

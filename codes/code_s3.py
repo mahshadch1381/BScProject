@@ -12,12 +12,12 @@ constants = {
 
     "p_gas_presence":0.78,
     "p_structure_stable":  0.96,
-    "p_structure_checkable": 1,
+    "p_structure_checkable": 0,
     
-    "p_explore_success": 0.7,
+    "p_explore_success": 0.95,
     "p_gas_detect": 0.88,
     "p_structure_safe": 0.86,
-    "p_send_success": 0.78,
+    "p_send_success": 0.98,
     "p_send_success_lead": 0.86,
     "p_send_success_gas_detector": 0.86,
     "min_energy_lead": 10,
@@ -157,7 +157,7 @@ try:
 
     plt.figure(figsize=(10, 6))
     sns.heatmap(df_heatmap, annot=True, cmap='coolwarm', cbar=False, linewidths=0.5, fmt="g")
-    plt.title('Heatmap of Flags Across Sections')
+    plt.title('scenario where the mining environment cannot be monitored')
     plt.ylabel('Section')
     plt.xlabel('Condition')
     s3_output_file = "plots\plot_s3_result.png" 
