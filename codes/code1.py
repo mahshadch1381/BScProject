@@ -79,7 +79,7 @@ plt.subplot(121)
 plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
 plt.xlabel('Total Sections')
 plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
-plt.title('Property 5')
+plt.title('total sections vs max reward')
 plt.grid(True)
 plt.legend()
 
