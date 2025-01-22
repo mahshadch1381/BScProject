@@ -69,15 +69,14 @@ with open(cost_file_path, 'r') as cost_file:
             run_prism_with_cost_group(cost_group, counterGroup, result_data)
         counterGroup += 1
 
-# Plot the table
 columns = ["Total Sections"] + [f"Property {i}" for i in range(1, 11)]
 table_data = list(zip(*[result_data[key] for key in range(11)]))
 
 plt.figure(figsize=(12, 6))
 plt.axis("off")
-plt.title("Summary Table for Results", fontsize=14)
+plt.title("Result Table for Properties", fontsize=14)
 
-# Add fontsize for the table cells
+# Add table
 table = plt.table(
     cellText=table_data,
     colLabels=columns,
@@ -90,7 +89,25 @@ table.auto_set_font_size(False)
 table.set_fontsize(9)  # Adjust this value to make the font size bigger
 table.scale(1.2, 1.2)  # Scale the table to make it larger
 
-output_file = "plots/result_properties_table.png" 
+# Add explanations below the table
+explanation_text = """
+Property 1:From any state, if unsafe area is detected, system in next step will reach unsafe state.
+Property 2:From any state, if safe area is detected, system in next step will reach safe state.
+Property 3:From any state, if low energy is detected, robot will eventually recover.
+Property 4:From any state, proper distance is maintained.
+Property 5:Maximum expected REWARD to reach area_checked state and it has the conditions for the robots to return to the initial state.
+Property 6:Minimum expected REWARD to reach area_checked state and it has the conditions for the robots to return to the initial state. 
+Property 7:Maximum expected REWARD to reach area_checked state and it has the conditions for the section can not be checked.
+Property 8:Safty condition,all section should be checked(with probability of 1).
+Property 9:Finaly all robots should be at initialize situation.
+Property 10:failure condition,when has failure in connection or low energ for robots.
+"""
+
+plt.text(
+    0.01, -0.15, explanation_text, fontsize=7, ha="left", va="top", transform=plt.gca().transAxes
+)
+
 # Save the table as an image
-plt.savefig(output_file, dpi=300, format="png")
+output_file = "plots/result_properties_table_with_explanations.png"
+plt.savefig(output_file, dpi=300, format="png", bbox_inches="tight")
 plt.show()
