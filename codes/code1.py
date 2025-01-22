@@ -72,9 +72,10 @@ with open(cost_file_path, 'r') as cost_file:
         counterGroup += 1 
 
 
-plt.figure(figsize=(12, 6)) 
+plt.figure(figsize=(10, 6))
 
-plt.subplot(131)  
+# Plot Property 5
+plt.subplot(121)
 plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
 plt.xlabel('Total Sections')
 plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
@@ -82,28 +83,38 @@ plt.title('Property 5')
 plt.grid(True)
 plt.legend()
 
-
-plt.subplot(132)
-plt.plot(result_data['group'], result_data['property_7'], marker='o', color='g', label='Property 7')
-plt.xlabel('Total Sections')
-plt.ylabel('Max reward for :F "area_checked" {!section_safe_to_check}')
-plt.title('Property 7')
-plt.grid(True)
-plt.legend()
-
-plt.subplot(133)
-plt.plot(result_data['group'], result_data['property_10'], marker='o', color='r', label='reliability')
-plt.xlabel('Total Sections')
-plt.ylabel('reliability')
-plt.title('reliability')
-plt.grid(True)
-plt.legend()
+# Table for Property 5
+plt.subplot(122)
+plt.axis('off')
+columns = ["Total Sections", "Property 5"]
+data = list(zip(result_data['group'], result_data['property_5']))
+plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
+plt.title("Property 5 Values")
 
 plt.tight_layout()
-plt.subplots_adjust(wspace=0.4) 
+plt.savefig("plots/plot_results1.png", format='png', dpi=300)
+plt.close()
 
+# Plot and save Reliability plot and table
+plt.figure(figsize=(10, 6))
 
-output_file = "plots\plot_results1.png" 
-plt.savefig(output_file, format='png', dpi=300) 
+# Plot Reliability
+plt.subplot(121)
+plt.plot(result_data['group'], result_data['property_10'], marker='o', color='r', label='Reliability')
+plt.xlabel('Total Sections')
+plt.ylabel('Reliability')
+plt.title('Reliability')
+plt.grid(True)
+plt.legend()
 
+# Table for Reliability
+plt.subplot(122)
+plt.axis('off')
+columns = ["Total Sections", "Reliability"]
+data = list(zip(result_data['group'], result_data['property_10']))
+plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
+plt.title("Reliability Values")
+
+plt.tight_layout()
+plt.savefig("plots/plot_reliability_results.png", format='png', dpi=300)
 plt.close()

@@ -64,30 +64,31 @@ with open(cost_file_path, 'r') as cost_file:
         counterGroup += 1 
 
 
-plt.figure(figsize=(12, 6)) 
 
-plt.subplot(121)  
+
+plt.figure(figsize=(10, 6))
+
+# Plot Property 5
+plt.subplot(121)
 plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
 plt.xlabel('p_send_success_lead')
 plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
-plt.title('Property 5')
+plt.title('probability of successful send in lead vs max reward')
 plt.grid(True)
 plt.legend()
 
-
+# Table for Property 5
 plt.subplot(122)
-plt.plot(result_data['group'], result_data['property_7'], marker='o', color='g', label='Property 7')
-plt.xlabel('p_send_success_lead')
-plt.ylabel('Max reward for :F "area_checked" {!section_safe_to_check}')
-plt.title('Property 7')
-plt.grid(True)
-plt.legend()
-
+plt.axis('off')
+columns = ["p_send_success_lead", "max reward"]
+data = list(zip(result_data['group'], result_data['property_5']))
+plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
+plt.title("p_send_success_lead , max reward")
 plt.tight_layout()
-plt.subplots_adjust(wspace=0.4) 
-
 
 output_file = "plots\plot_results4.png" 
 plt.savefig(output_file, format='png', dpi=300) 
 
 plt.close()
+
+

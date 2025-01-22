@@ -11,14 +11,13 @@ constants = {
     "recovery_position": 33,
 
     "p_gas_presence":0.78,
-    "p_structure_stable": 1,
-    "p_structure_checkable": 0.89,
-
+    "p_structure_stable":  0.8,
+    "p_structure_checkable": 1,
     
-    "p_explore_success": 0.7,
+    "p_explore_success": 0.95,
     "p_gas_detect": 0.88,
     "p_structure_safe": 0.86,
-    "p_send_success": 0.78,
+    "p_send_success": 0.98,
     "p_send_success_lead": 0.86,
     "p_send_success_gas_detector": 0.86,
     "min_energy_lead": 10,
@@ -36,7 +35,7 @@ param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
 
 model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
 properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
-simulation_output_file = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output2.txt"
+simulation_output_file = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output4.txt"
 
 
 prism_command = [
@@ -103,7 +102,7 @@ try:
         print(item)
 
     df = pd.read_csv(simulation_output_file, sep="\s+", header=None)
-    print("lo")
+
 
     columns = ["action", "step", "section_index", "gas_present", "structure_stable", 
             "can_check_section", "m", "z", "section", "structure_safe_flag", 
@@ -129,7 +128,7 @@ try:
     df_selected = df[selected_columns]
 
 
-    output_file = r"C:\Aterm9\Karshensi_Project\all\tables\selected_data_table2.txt"
+    output_file = r"C:\Aterm9\Karshensi_Project\all\tables\selected_data_table4.txt"
     df_selected.to_csv(output_file, index=False, sep='\t')
 
     print("Selected data has been saved as a formatted table.")
@@ -158,11 +157,11 @@ try:
 
     plt.figure(figsize=(10, 6))
     sns.heatmap(df_heatmap, annot=True, cmap='coolwarm', cbar=False, linewidths=0.5, fmt="g")
-    plt.title('scenario where the mine walls(structure) are safe.')
+    plt.title('scenario where the mining environment can be monitored')
     plt.ylabel('Section')
     plt.xlabel('Condition')
-    s2_output_file = "plots\plot_s2_result.png" 
-    plt.savefig(s2_output_file, format='png')
+    s3_output_file = "plots\plot_s4_result.png" 
+    plt.savefig(s3_output_file, format='png')
     plt.show()
 
 except subprocess.CalledProcessError as e:
