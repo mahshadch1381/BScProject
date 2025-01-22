@@ -1,5 +1,5 @@
 
-// From any state, if unsafe area is detected, system will eventually reach safe state
+// From any state, if unsafe area is detected, system will eventually reach unsafe state
 filter(forall, "unsafe_area" => P>=1 [X "unsafe_mode"])
 
 
