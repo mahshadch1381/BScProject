@@ -29,7 +29,7 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data):
         
         output = result.stdout
         propertyNumber = 1
-        p_explore_success = cost_group["p_structure_safe"]
+        p_explore_success = cost_group["p_send_success_lead"]
         for line in output.splitlines():
             if "Result" in line:
                 print(f"Result for cost group {counterGroup} , property { propertyNumber} : {line}")
@@ -68,7 +68,7 @@ plt.figure(figsize=(12, 6))
 
 plt.subplot(121)  
 plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
-plt.xlabel('p_structure_safe')
+plt.xlabel('p_send_success_lead')
 plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
 plt.title('Property 5')
 plt.grid(True)
@@ -77,7 +77,7 @@ plt.legend()
 
 plt.subplot(122)
 plt.plot(result_data['group'], result_data['property_7'], marker='o', color='g', label='Property 7')
-plt.xlabel('p_structure_safe')
+plt.xlabel('p_send_success_lead')
 plt.ylabel('Max reward for :F "area_checked" {!section_safe_to_check}')
 plt.title('Property 7')
 plt.grid(True)
