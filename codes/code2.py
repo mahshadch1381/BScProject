@@ -1,40 +1,58 @@
 import subprocess
 import matplotlib.pyplot as plt
 
-
 model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
 properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
 cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts2.txt"
 
+def plot_results(result_data, output_file):
+    plt.figure(figsize=(10, 6))
 
-def parse_cost_line(line):
+    # Plot Property 5
+    plt.subplot(121)
+    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
+    plt.xlabel('p-explore-success')
+    plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
+    plt.title('Probability of Success vs Max Reward')
+    plt.grid(True)
+    plt.legend()
+
+    # Table for Property 5
+    plt.subplot(122)
+    plt.axis('off')
+    columns = ["p-explore-success", "max reward"]
+    data = list(zip(result_data['group'], result_data['property_5']))
+    plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
+    plt.title("p-explore-success, Max Reward")
+    plt.tight_layout()
+
+    plt.savefig(output_file, format='png', dpi=300)
+    plt.close()
+
+def extract_cost_line(line):
     param_dict = {}
     for param in line.strip().split(","):
         key_value = param.split("=")
         if len(key_value) == 2:
             key, value = key_value
-            param_dict[key.strip()] = float(value.strip()) if "." in value else int(value.strip())  
+            param_dict[key.strip()] = float(value.strip()) if "." in value else int(value.strip())
     return param_dict
 
 
-def run_prism_with_cost_group(cost_group, counterGroup, result_data):
-
+def connect_to_prism_cli_and_run(cost_group, counterGroup, result_data):
     param_str = ",".join([f"{key}={value}" for key, value in cost_group.items()])
-
     prism_command = [
-        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&", 
+        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",
         r"prism.bat", model_file, properties_file, "-const", param_str
     ]
-
     try:
         result = subprocess.run(' '.join(prism_command), shell=True, capture_output=True, text=True, check=True)
-        
         output = result.stdout
         propertyNumber = 1
         p_explore_success = cost_group["p_explore_success"]
         for line in output.splitlines():
             if "Result" in line:
-                print(f"Result for cost group {counterGroup} , property { propertyNumber} : {line}")
+                print(f"Result for cost group {counterGroup} , property {propertyNumber} : {line}")
                 if propertyNumber == 5:
                     property_5 = float(line.split(":")[1].strip())
                     result_data['group'].append(p_explore_success)
@@ -42,51 +60,68 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data):
                 elif propertyNumber == 7:
                     property_7 = float(line.split(":")[1].strip())
                     result_data['property_7'].append(property_7)
-         
-             
+
                 propertyNumber += 1
-    
     except subprocess.CalledProcessError as e:
         print(f"Error running PRISM with cost group {counterGroup}:\n", e.stderr)
 
-result_data = {
-    'group': [],
-    'property_5': [],
-    'property_7': [],
-    'property_8': []
-}
 
 
+
+def plot_comparison(data1, data2, group_label, property_label, title, output_file):
+    """
+    Plots comparison between two sets of data with a graph and table.
+
+    Parameters:
+    - data1: Dictionary with 'group' and 'property' values for dataset 1.
+    - data2: Dictionary with 'group' and 'property' values for dataset 2.
+    - group_label: Label for the x-axis (e.g., "p-explore-success").
+    - property_label: Label for the y-axis (e.g., "Max Reward").
+    - title: Title of the plot and table (e.g., "Comparison of Max Rewards").
+    - output_file: Path for saving the output plot image.
+    """
+    plt.figure(figsize=(12, 8))
+
+    # Plot Comparison
+    plt.subplot(121)
+    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='property5')
+    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='property7')
+    plt.xlabel(group_label)
+    plt.ylabel(property_label)
+    plt.title(f"{title} (Graph)")
+    plt.grid(True)
+    plt.legend()
+
+    # Table for Comparison
+    plt.subplot(122)
+    plt.axis('off')
+    columns = [group_label, "maxReward5", "maxReward7", "Difference"]
+    table_data = []
+    for g, p1, p2 in zip(data1['group'], data1['property'], data2['property']):
+        diff = round(abs(p1 - p2), 4)
+        table_data.append([g, p1, p2, diff])
+    plt.table(cellText=table_data, colLabels=columns, loc='center', cellLoc='center', fontsize=9)
+    plt.title(f"{title} (Table)")
+
+    plt.tight_layout()
+    plt.savefig(output_file, format='png', dpi=300)
+    plt.close()
+
+
+# Main script
+result_data = {'group': [],'property_5': [],'property_7': []}
 counterGroup = 1
 with open(cost_file_path, 'r') as cost_file:
     for line in cost_file:
-        if line.strip():  
-            cost_group = parse_cost_line(line)
+        if line.strip():
+            cost_group = extract_cost_line(line)
             run_prism_with_cost_group(cost_group, counterGroup, result_data)
-        counterGroup += 1 
+        counterGroup += 1
 
+# Plotting the individual results
+plot_results(result_data, "plots/plot_results2.png")
 
-plt.figure(figsize=(10, 6))
-
-# Plot Property 5
-plt.subplot(121)
-plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
-plt.xlabel('p-explore-success')
-plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
-plt.title('probability of success of the lead vs max reward')
-plt.grid(True)
-plt.legend()
-
-# Table for Property 5
-plt.subplot(122)
-plt.axis('off')
-columns = ["p-explore-success", "max reward"]
-data = list(zip(result_data['group'], result_data['property_5']))
-plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
-plt.title("p-explore-success , max reward")
-plt.tight_layout()
-
-output_file = "plots/plot_results2.png" 
-plt.savefig(output_file, format='png', dpi=300) 
-
-plt.close()
+# Plotting the comparison
+data1 = {'group': result_data['group'], 'property': result_data['property_5']}
+data2 = {'group': result_data['group'], 'property': result_data['property_7']}
+plot_comparison(data1, data2, "p-explore-success", "Max Reward", "Comparison of Properties 5 and 7", "plots/plot_comparison_result2.png")
