@@ -90,7 +90,7 @@ try:
     plt.tight_layout()
 
     # Save plot
-    accuracy_plot_file = "plots\plot_s3_accuracy.png"
+    accuracy_plot_file = "plots\plot_s4_accuracy.png"
     plt.savefig(accuracy_plot_file, format='png')
     plt.show()
 
