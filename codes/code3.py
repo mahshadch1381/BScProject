@@ -69,8 +69,7 @@ def plot_comparison(data1, data2, group_label, property_label, title, output_fil
         diff = round(abs(p1 - p2), 4)
         table_data.append([g, p1, p2, diff])
     plt.table(cellText=table_data, colLabels=columns, loc='center', cellLoc='center', fontsize=9)
-    plt.table.auto_set_font_size(False)  # Disable automatic font sizing
-    plt.table.set_fontsize(9) 
+    ##plt.table.set_fontsize(9) 
     plt.title(f"{title} (Table)")
     plt.tight_layout()
     plt.savefig(output_file, format='png', dpi=300)
@@ -137,3 +136,5 @@ plot_comparison(data1, data2, "p_gas_detect", "Max Reward", "Comparison of Prope
 # Plot results
 output_file = "plots/plot_results3.png"
 plot_results(result_data, output_file)
+
+print("plot saved.")
