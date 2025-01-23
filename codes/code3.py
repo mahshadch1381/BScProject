@@ -48,6 +48,33 @@ def process_property_result(line, property_number, p_explore_success, result_dat
         property_7 = float(line.split(":")[1].strip())
         result_data['property_7'].append(property_7)
 
+def plot_comparison(data1, data2, group_label, property_label, title, output_file):
+
+    plt.figure(figsize=(12, 8))
+    # Plot Comparison
+    plt.subplot(121)
+    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='property5')
+    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='property7')
+    plt.xlabel(group_label)
+    plt.ylabel(property_label)
+    plt.title(f"{title} (Graph)")
+    plt.grid(True)
+    plt.legend()
+    # Table for Comparison
+    plt.subplot(122)
+    plt.axis('off')
+    columns = [group_label, "maxReward5", "maxReward7", "Difference"]
+    table_data = []
+    for g, p1, p2 in zip(data1['group'], data1['property'], data2['property']):
+        diff = round(abs(p1 - p2), 4)
+        table_data.append([g, p1, p2, diff])
+    plt.table(cellText=table_data, colLabels=columns, loc='center', cellLoc='center', fontsize=9)
+    plt.table.auto_set_font_size(False)  # Disable automatic font sizing
+    plt.table.set_fontsize(9) 
+    plt.title(f"{title} (Table)")
+    plt.tight_layout()
+    plt.savefig(output_file, format='png', dpi=300)
+    plt.close()
 
 
 def plot_results(result_data, output_file):
@@ -102,6 +129,10 @@ with open(cost_file_path, 'r') as cost_file:
             cost_group =check_values_line(line)
             prism_connect_and_run(cost_group, counter_group, result_data)
         counter_group += 1
+
+data1 = {'group': result_data['group'], 'property': result_data['property_5']}
+data2 = {'group': result_data['group'], 'property': result_data['property_7']}
+plot_comparison(data1, data2, "p_gas_detect", "Max Reward", "Comparison of Properties 5 and 7", "plots/plot_comparison_result3.png")
 
 # Plot results
 output_file = "plots/plot_results3.png"
