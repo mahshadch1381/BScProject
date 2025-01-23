@@ -31,6 +31,28 @@ constants = {
     "max_speed_leader": 120
 }
 
+def print_results(section_safe_to_check,gas_detected_flag_true,structure_ok_flag_false,section_safe_true,simulation_output_file):
+    print("\nTuples with  section_safe_to_check:\n")
+    for item in sorted(section_safe_to_check):
+        print(item)    
+
+    print("\nTuples with gas_detected_flag=True:\n")
+    for item in sorted(gas_detected_flag_true):
+        print(item)
+
+    print("\nTuples with structure_ok_flag=False:\n")
+    for item in sorted(structure_ok_flag_false):
+        print(item)
+
+
+    print("\nTuples with section_safe=True:\n")
+    for item in sorted(section_safe_true):
+        print(item)
+
+    df = pd.read_csv(simulation_output_file, sep="\s+", header=None)
+    print("finish saving file")
+    return df
+
 
 param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
 
@@ -85,25 +107,10 @@ try:
 
             if section_safe_to_check_flag:
                 section_safe_to_check.add((current_section, section_safe_to_check_flag))
-    print("\nTuples with  section_safe_to_check:\n")
-    for item in sorted( section_safe_to_check):
-        print(item)    
+  
+       
 
-    print("\nTuples with gas_detected_flag=True:\n")
-    for item in sorted(gas_detected_flag_true):
-        print(item)
-
-    print("\nTuples with structure_ok_flag=False:\n")
-    for item in sorted(structure_ok_flag_false):
-        print(item)
-
-
-    print("\nTuples with section_safe=True:\n")
-    for item in sorted(section_safe_true):
-        print(item)
-
-    df = pd.read_csv(simulation_output_file, sep="\s+", header=None)
-    print("lo")
+    df = print_results(section_safe_to_check,gas_detected_flag_true,structure_ok_flag_false,section_safe_true,simulation_output_file)
 
     columns = ["action", "step", "section_index", "gas_present", "structure_stable", 
             "can_check_section", "m", "z", "section", "structure_safe_flag", 
