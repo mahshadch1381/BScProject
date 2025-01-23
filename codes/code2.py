@@ -115,7 +115,7 @@ with open(cost_file_path, 'r') as cost_file:
     for line in cost_file:
         if line.strip():
             cost_group = extract_cost_line(line)
-            run_prism_with_cost_group(cost_group, counterGroup, result_data)
+            connect_to_prism_cli_and_run(cost_group, counterGroup, result_data)
         counterGroup += 1
 
 # Plotting the individual results
