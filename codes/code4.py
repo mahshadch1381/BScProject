@@ -100,7 +100,7 @@ def plot_comparison_with_tables(result_data, output_file):
     plt.figure(figsize=(16, 8))
 
     # Plot comparison
-    plt.subplot(131)
+    plt.subplot(121)
     plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
     plt.plot(result_data['group'], result_data['property_7'], marker='s', color='r', label='Property 7')
     plt.xlabel('p_send_success_lead')
@@ -109,26 +109,31 @@ def plot_comparison_with_tables(result_data, output_file):
     plt.grid(True)
     plt.legend()
 
-    # Table for Property 5
-    plt.subplot(132)
+    # Combined table for Property 5, Property 7, and Difference
+    plt.subplot(122)
     plt.axis('off')
-    table_columns_5 = ["p_send_success_lead", "Reward (Property 5)"]
-    table_data_5 = list(zip(result_data['group'], result_data['property_5']))
-    table_5 = plt.table(cellText=table_data_5, colLabels=table_columns_5, loc='center', cellLoc='center')
-    table_5.auto_set_font_size(False)
-    table_5.set_fontsize(10)
-    plt.title("Property 5 Rewards")
 
-    # Table for Property 7
-    plt.subplot(133)
-    plt.axis('off')
-    table_columns_7 = ["p_send_success_lead", "Reward (Property 7)"]
-    table_data_7 = list(zip(result_data['group'], result_data['property_7']))
-    table_7 = plt.table(cellText=table_data_7, colLabels=table_columns_7, loc='center', cellLoc='center')
-    table_7.auto_set_font_size(False)
-    table_7.set_fontsize(10)
-    plt.title("Property 7 Rewards")
+    table_columns = ["p_send_success_lead", "Reward(Property 5)", "Reward(Property 7)", "Difference"]
+    table_data = [
+        (
+            result_data['group'][i],
+            result_data['property_5'][i],
+            result_data['property_7'][i],
+            result_data['property_7'][i] - result_data['property_5'][i]
+        )
+        for i in range(len(result_data['group']))
+    ]
 
+    table = plt.table(
+        cellText=table_data,
+        colLabels=table_columns,
+        loc='center',
+        cellLoc='center'
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)  # Adjust font size
+    table.scale(1.2, 1.4)  # Adjust table scaling
+    plt.title("Comparison Table: Property 5 vs Property 7 with Difference")
     plt.tight_layout()
     plt.savefig(output_file, format='png', dpi=300)
     plt.close()

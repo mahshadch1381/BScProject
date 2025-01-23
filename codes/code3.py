@@ -13,7 +13,38 @@ def get_parameter(key_value):
     key, value = key_value
     return key.strip(), float(value.strip()) if "." in value else int(value.strip())
 
-
+def plot_comparison(data1, data2, group_label, property_label, title, output_file):
+    plt.figure(figsize=(16, 8))
+    plt.subplot(121)
+    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='Property 5')
+    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='Property 7')
+    plt.xlabel(group_label)
+    plt.ylabel(property_label)
+    plt.title(f"{title} (Graph)")
+    plt.grid(True)
+    plt.legend()
+    table_data = [( data1['group'][i],  # p_gas_detect 
+            data1['property'][i],  # Reward for Property 5
+            data2['property'][i],  # Reward for Property 7
+            data2['property'][i] - data1['property'][i]  # Difference
+            )  for i in range(len(data1['group']))
+    ]
+    plt.subplot(122)
+    plt.axis('off')
+    columns = [group_label, "Reward (Property 5)", "Reward (Property 7)", "Difference"]
+    table = plt.table(
+        cellText=table_data,
+        colLabels=columns,
+        loc='center',
+        cellLoc='center'
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)  # Adjust font size
+    table.scale(1.2, 1.4)  # Adjust table scaling
+    plt.title("Comparison Table: Property 5 vs Property 7 with Difference")
+    plt.tight_layout()
+    plt.savefig(output_file, format='png', dpi=300)
+    plt.close()
 
 def check_values_line(line):
     """Parses a line from the cost file into a dictionary."""
@@ -48,32 +79,6 @@ def process_property_result(line, property_number, p_explore_success, result_dat
         property_7 = float(line.split(":")[1].strip())
         result_data['property_7'].append(property_7)
 
-def plot_comparison(data1, data2, group_label, property_label, title, output_file):
-
-    plt.figure(figsize=(12, 8))
-    # Plot Comparison
-    plt.subplot(121)
-    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='property5')
-    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='property7')
-    plt.xlabel(group_label)
-    plt.ylabel(property_label)
-    plt.title(f"{title} (Graph)")
-    plt.grid(True)
-    plt.legend()
-    # Table for Comparison
-    plt.subplot(122)
-    plt.axis('off')
-    columns = [group_label, "maxReward5", "maxReward7", "Difference"]
-    table_data = []
-    for g, p1, p2 in zip(data1['group'], data1['property'], data2['property']):
-        diff = round(abs(p1 - p2), 4)
-        table_data.append([g, p1, p2, diff])
-    plt.table(cellText=table_data, colLabels=columns, loc='center', cellLoc='center', fontsize=9)
-    ##plt.table.set_fontsize(9) 
-    plt.title(f"{title} (Table)")
-    plt.tight_layout()
-    plt.savefig(output_file, format='png', dpi=300)
-    plt.close()
 
 
 def plot_results(result_data, output_file):
@@ -137,4 +142,3 @@ plot_comparison(data1, data2, "p_gas_detect", "Max Reward", "Comparison of Prope
 output_file = "plots/plot_results3.png"
 plot_results(result_data, output_file)
 
-print("plot saved.")
