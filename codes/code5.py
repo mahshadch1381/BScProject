@@ -31,11 +31,11 @@ def parse_cost_line(line):
     return param_dict
 
 def prepare_command():
-    properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
-    model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
+    properties_file = r"..\..\properties.props"
+    model_file = r"..\..\first_model.prism"
     param_str = ",".join([f"{key}={value}" for key, value in cost_group.items()])
     prism_command = [
-        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&", 
+        r"cd", r"prism-4.8.1\bin", "&&", 
         r"prism.bat", model_file, properties_file, "-const", param_str
     ]
     return prism_command
@@ -57,7 +57,7 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data):
 
 result_data = {'group': [],'property_5': [],'property_7': []}
 
-cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts5.txt"
+cost_file_path = r"consts\consts5.txt"
 counterGroup = 1
 with open(cost_file_path, 'r') as cost_file:
     for line in cost_file:

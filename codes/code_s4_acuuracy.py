@@ -30,8 +30,8 @@ constants = {
 
 param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
 
-model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
-properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
+model_file = r"..\..\first_model.prism"
+properties_file = r"..\..\properties.props"
 simulation_output_file_accuracy = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output3_accuracy.txt"
 
 # Store accuracies
@@ -40,7 +40,7 @@ accuracies = []
 try:
     for run in range(25):  # Run the command 25 times
         prism_command = [
-            r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",
+            r"cd", r"prism-4.8.1\bin", "&&",
             r"prism.bat", model_file, properties_file, "-const", param_str,
             "-simpath", "300", simulation_output_file_accuracy
         ]

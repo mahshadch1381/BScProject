@@ -2,9 +2,9 @@ import subprocess
 import matplotlib.pyplot as plt
 
 
-model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
-properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
-cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts3.txt"
+model_file = r"..\..\first_model.prism"
+properties_file = r"..\..\properties.props"
+cost_file_path = r"consts\consts3.txt"
 
 
 
@@ -113,7 +113,7 @@ def prism_connect_and_run(cost_group, counter_group, result_data):
     """Runs PRISM with the given cost group and processes the results."""
     param_str = ",".join([f"{key}={value}" for key, value in cost_group.items()])
     prism_command = [
-        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",
+         r"cd", r"prism-4.8.1\bin", "&&",
         r"prism.bat", model_file, properties_file, "-const", param_str
     ]
     try:
