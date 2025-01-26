@@ -8,7 +8,7 @@ constants = {
     "total_sections": 10,
     "max_retries": 3,
     "max_distance": 150,
-    "recovery_position": 33,
+  
     "p_gas_presence":0.78,
     "p_structure_stable":  0.96,
     "p_structure_checkable": 1,
@@ -17,7 +17,7 @@ constants = {
     "p_structure_safe": 0.86,
     "p_send_success": 0.98,
     "p_send_success_lead": 0.86,
-    "p_send_success_gas_detector": 0.86,
+  
     "min_energy_lead": 10,
     "min_energy_gas_detector": 10,
     "min_energy_safe_detector": 10,
@@ -30,8 +30,8 @@ constants = {
 
 param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
 
-model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
-properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
+model_file = r"..\..\first_model.prism"
+properties_file = r"..\..\properties.props"
 simulation_output_file_accuracy = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output3_accuracy.txt"
 
 # Store accuracies
@@ -40,7 +40,7 @@ accuracies = []
 try:
     for run in range(25):  # Run the command 25 times
         prism_command = [
-            r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",
+            r"cd", r"prism-4.8.1\bin", "&&",
             r"prism.bat", model_file, properties_file, "-const", param_str,
             "-simpath", "300", simulation_output_file_accuracy
         ]

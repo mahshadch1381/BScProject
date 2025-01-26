@@ -2,11 +2,12 @@ import subprocess
 import matplotlib.pyplot as plt
 
 
-model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
-properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
+model_file = r"..\..\first_model.prism"
+properties_file = r"..\..\properties.props"
+cost_file_path = r"consts\consts1.txt"
 ##prism.bat "C:\Aterm9\Karshensi_Project\all\first_model.prism" "C:\Aterm9\Karshensi_Project\all\properties.props" -const total_sections=10,max_retries=3,max_distance=150,recovery_position=33,p_explore_success=0.7,p_gas_detect=0.88,p_structure_safe=0.86,p_gas_presence=0.78,p_structure_stable=0.96,p_structure_checkable=0.89,p_send_success=0.78,p_send_success_lead=0.86,p_send_success_gas_detector=0.86,min_energy_lead=10,min_energy_gas_detector=10,min_energy_safe_detector=10,min_energy_leader=10,max_speed_lead=120,max_speed_gas_detector=120,max_speed_safe_detector=120,max_speed_leader=120 -simpath 250 "C:\Aterm9\Karshensi_Project\all\simulation_output.txt"
 
-cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts1.txt"
+
 
 
 def parse_cost_line(line):
@@ -24,7 +25,7 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data):
     param_str = ",".join([f"{key}={value}" for key, value in cost_group.items()])
 
     prism_command = [
-        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&", 
+        r"cd", r"prism-4.8.1\bin", "&&", 
         r"prism.bat", model_file, properties_file, "-const", param_str
     ]
 

@@ -1,9 +1,9 @@
 import subprocess
 import matplotlib.pyplot as plt
 
-model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
-properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
-cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts2.txt"
+model_file = r"..\..\first_model.prism"
+properties_file = r"..\..\properties.props"
+cost_file_path = r"consts\consts2.txt"
 
 def plot_results(result_data, output_file):
     plt.figure(figsize=(10, 6))
@@ -42,7 +42,7 @@ def extract_cost_line(line):
 def connect_to_prism_cli_and_run(cost_group, counterGroup, result_data):
     param_str = ",".join([f"{key}={value}" for key, value in cost_group.items()])
     prism_command = [
-        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",
+        r"cd", r"prism-4.8.1\bin", "&&",
         r"prism.bat", model_file, properties_file, "-const", param_str
     ]
     try:
@@ -80,7 +80,7 @@ def plot_comparison(data1, data2, group_label, property_label, title, output_fil
     - title: Title of the plot and table (e.g., "Comparison of Max Rewards").
     - output_file: Path for saving the output plot image.
     """
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(16, 8))
 
     # Plot Comparison
     plt.subplot(121)
@@ -96,13 +96,22 @@ def plot_comparison(data1, data2, group_label, property_label, title, output_fil
     plt.subplot(122)
     plt.axis('off')
     columns = [group_label, "maxReward5", "maxReward7", "Difference"]
-    table_data = []
-    for g, p1, p2 in zip(data1['group'], data1['property'], data2['property']):
-        diff = round(abs(p1 - p2), 4)
-        table_data.append([g, p1, p2, diff])
-    plt.table(cellText=table_data, colLabels=columns, loc='center', cellLoc='center', fontsize=9)
+    table_data = [( data1['group'][i],  # p_gas_detect 
+            data1['property'][i],  # Reward for Property 5
+            data2['property'][i],  # Reward for Property 7
+            data2['property'][i] - data1['property'][i]  # Difference
+            )  for i in range(len(data1['group']))
+    ]
+    table = plt.table(
+        cellText=table_data,
+        colLabels=columns,
+        loc='center',
+        cellLoc='center'
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)  # Adjust font size
+    table.scale(1.2, 1.4)  # Adjust table scaling
     plt.title(f"{title} (Table)")
-
     plt.tight_layout()
     plt.savefig(output_file, format='png', dpi=300)
     plt.close()

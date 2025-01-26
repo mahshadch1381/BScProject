@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 
 # File paths
-model_file = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
-properties_file = r"C:\Aterm9\Karshensi_Project\all\properties.props"
-cost_file_path = r"C:\Aterm9\Karshensi_Project\all\consts\consts6.txt"
+model_file = r"..\..\first_model.prism"
+properties_file = r"..\..\properties.props"
+cost_file_path = r"consts\consts6.txt"
 
 
 def parse_cost_line(line):
@@ -23,7 +23,7 @@ def build_prism_command(cost_group):
     """Build the PRISM command for execution."""
     param_str = ",".join([f"{key}={value}" for key, value in cost_group.items()])
     return [
-        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",
+        r"cd", r"prism-4.8.1\bin", "&&",
         r"prism.bat", model_file, properties_file, "-const", param_str
     ]
 

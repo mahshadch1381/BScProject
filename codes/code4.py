@@ -2,9 +2,9 @@ import subprocess
 import matplotlib.pyplot as plt
 
 # File paths
-MODEL_FILE = r"C:\Aterm9\Karshensi_Project\all\first_model.prism"
-PROPERTIES_FILE = r"C:\Aterm9\Karshensi_Project\all\properties.props"
-COST_FILE_PATH = r"C:\Aterm9\Karshensi_Project\all\consts\consts4.txt"
+MODEL_FILE = r"..\..\first_model.prism"
+PROPERTIES_FILE = r"..\..\properties.props"
+COST_FILE_PATH =  r"consts\consts4.txt"
 
 
 # Main logic to read costs and process results
@@ -43,7 +43,7 @@ def extract_constants(line):
 def process_prism_results(cost_group, counter_group, result_data):
     param_str = ",".join([f"{key}={value}" for key, value in cost_group.items()])
     prism_command = [
-        r"cd", r"C:\Program Files\prism-4.8.1\bin", "&&",
+        r"cd", r"prism-4.8.1\bin", "&&",
         r"prism.bat", MODEL_FILE, PROPERTIES_FILE, "-const", param_str
     ]
     try:
