@@ -2,7 +2,7 @@ import subprocess
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# مقداردهی اولیه ثابت‌های مشترک
+
 constants_template = {
     "max_retries": 3,
     "max_distance": 150,
@@ -24,26 +24,26 @@ constants_template = {
     "max_speed_leader": 120
 }
 
-# مقادیر مختلف برای total_sections
+
 total_sections_values = [6, 8, 10, 12]
 
-# مسیر فایل‌ها
+
 model_file = r"..\..\first_model.prism"
 properties_file = r"..\..\properties.props"
 simulation_output_file_template = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output2_total_sections_{}.txt"
 
-# داده‌های خروجی برای رسم نمودار
+
 results = []
 
-# اجرای شبیه‌سازی برای هر مقدار از total_sections
+
 for total_sections in total_sections_values:
-    # تنظیم ثابت‌ها برای این مقدار
+
     constants = constants_template.copy()
     constants["total_sections"] = total_sections
     param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
     simulation_output_file = simulation_output_file_template.format(total_sections)
 
-    # فرمان PRISM
+ 
     prism_command = [
         r"cd", r"prism-4.8.1\bin", "&&",
         r"prism.bat", model_file, properties_file, "-const", param_str,
@@ -51,14 +51,14 @@ for total_sections in total_sections_values:
     ]
 
     try:
-        # اجرای شبیه‌سازی
+
         result = subprocess.run(' '.join(prism_command), shell=True, capture_output=True, text=True, check=True)
         section_safe_to_check = set()
         structure_ok_flag_false = set()
         gas_detected_flag_true = set()
         section_safe_true = set()
 
-        # پردازش فایل خروجی
+
         with open(simulation_output_file, 'r') as file:
             lines = file.readlines()
 
@@ -71,7 +71,7 @@ for total_sections in total_sections_values:
             section_safe_idx = columns.index("section_safe")
             section_idx = columns.index("section")
 
-            todt_values = []  # برای ذخیره ToTD
+            todt_values = []  
 
             for line in lines[1:]:
                 fields = line.strip().split()
@@ -82,7 +82,7 @@ for total_sections in total_sections_values:
                 send_structure_data_flag = fields[send_structure_data_idx ] == "true"
                 section_safe = fields[section_safe_idx] == "true"
 
-                # ذخیره اولین زمان شناسایی هدف (ToTD)
+                # (ToTD)
                 if  structure_ok_flag:
                     structure_ok_flag_false.add((current_section, structure_ok_flag))
 
@@ -95,7 +95,7 @@ for total_sections in total_sections_values:
                 if section_safe_to_check_flag:
                     section_safe_to_check.add((current_section, section_safe_to_check_flag))
 
-        # محاسبه مقادیر مورد نظر
+       
         max_step = max([int(line.strip().split()[1]) for line in lines[1:]])
         avg_todt = sum(todt_values) / len(todt_values) if todt_values else 0
         max_section = max([int(line.strip().split()[section_idx]) for line in lines[1:]])
@@ -113,10 +113,10 @@ for total_sections in total_sections_values:
     except subprocess.CalledProcessError as e:
         print(f"Error during execution for total_sections={total_sections}: {e}")
 
-# تبدیل نتایج به DataFrame
+
 results_df = pd.DataFrame(results)
 
-# رسم نمودار Coverage Time (CT)
+#Coverage Time (CT)
 plt.figure(figsize=(8, 5))
 plt.bar(results_df["total_sections"], results_df["max_step"], color="blue")
 plt.xlabel("Total Sections")
@@ -128,7 +128,7 @@ plt.savefig(plot_file, format='png')
 plt.show()
 
 
-# رسم نمودار Number of Targets Found (NoTF)
+#Number of Targets Found (NoTF)
 plt.figure(figsize=(8, 5))
 plt.bar(results_df["total_sections"], results_df["section_structure_safe"], color="green")
 plt.xlabel("Total Sections")
@@ -139,7 +139,7 @@ plot_file ="plots\plot_s2_total_diff_Notf.png"
 plt.savefig(plot_file, format='png')
 plt.show()
 
-# رسم نمودار Coverage Ratio (CR)
+# Coverage Ratio (CR)
 plt.figure(figsize=(8, 5))
 coverage_ratio = results_df["max_section"] / results_df["total_sections"]
 plt.bar(results_df["total_sections"], coverage_ratio, color="purple")
@@ -152,7 +152,7 @@ plot_file = "plots\plot_s2_total_diff_CR.png"
 plt.savefig(plot_file, format='png')
 plt.show()
 
-# رسم نمودار Time of Target Discovery (ToTD)
+#Time of Target Discovery (ToTD)
 plt.figure(figsize=(10, 6))
 plt.plot(results_df["total_sections"], results_df["avg_todt"], marker="o", color="orange", label="Average ToTD")
 plt.xlabel("Total Sections")
