@@ -111,8 +111,12 @@ for total_sections in total_sections_values:
 results_df = pd.DataFrame(results)
 
 #Coverage Time (CT)
+colors = ['red', 'green', 'blue', 'yellow']
 plt.figure(figsize=(8, 5))
-plt.bar(results_df["total_sections"], results_df["max_step"], color="blue")
+bars = plt.bar(results_df["total_sections"], results_df["max_step"], color=colors)
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width() / 2, height + 2, f"{int(height)}", ha='center', fontsize=10)
 plt.xlabel("Total Sections")
 plt.ylabel("Coverage Time (Steps)")
 plt.title("Coverage Time (CT)")
