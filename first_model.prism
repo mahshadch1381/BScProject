@@ -3,7 +3,6 @@ dtmc
 const int total_sections ; 
 const int max_retries ;  
 const int max_distance ; 
-const int recovery_position ;
 
 const double p_explore_success ;   
 const double p_gas_detect ;       
@@ -15,7 +14,7 @@ const double p_structure_checkable;
 
 const double p_send_success;       
 const double p_send_success_lead ;  
-const double p_send_success_gas_detector ; 
+
 
 const int min_energy_lead; 
 const int min_energy_gas_detector ; 
@@ -36,14 +35,22 @@ module environment
     m:[0..1] init 0;           
     
     [initialize_section1] (section_index < total_sections) &(m=0)->  
-        p_structure_checkable*p_gas_presence * p_structure_stable : (gas_present' = true) & (structure_stable' = true)&(can_check_section'=true)&(m'=1) + 
-        p_structure_checkable*p_gas_presence * (1 - p_structure_stable) : (gas_present' = true) & (structure_stable' = false)&(can_check_section'=true)&(m'=1)+ 
-        p_structure_checkable*(1 - p_gas_presence) * p_structure_stable : (gas_present' = false) & (structure_stable' = true)&(can_check_section'=true)&(m'=1) + 
-        p_structure_checkable*(1 - p_gas_presence) * (1 - p_structure_stable) : (gas_present' = false) & (structure_stable' = false)&(can_check_section'=true)&(m'=1)+
-        (1-p_structure_checkable)*p_gas_presence * p_structure_stable : (gas_present' = true) & (structure_stable' = true)&(can_check_section'=false)&(m'=1) + 
-         (1-p_structure_checkable)*p_gas_presence * (1 - p_structure_stable) : (gas_present' = true) & (structure_stable' = false)&(can_check_section'=false)&(m'=1)+ 
-         (1-p_structure_checkable)*(1 - p_gas_presence) * p_structure_stable : (gas_present' = false) & (structure_stable' = true)&(can_check_section'=false)&(m'=1) + 
-         (1-p_structure_checkable)*(1 - p_gas_presence) * (1 - p_structure_stable) : (gas_present' = false) & (structure_stable' = false)&(can_check_section'=false)&(m'=1);  
+        p_structure_checkable*p_gas_presence * p_structure_stable : (gas_present' = true) &
+ 		(structure_stable' = true)&(can_check_section'=true)&(m'=1) + 
+        p_structure_checkable*p_gas_presence * (1 - p_structure_stable) : (gas_present' = true) &
+ 		(structure_stable' = false)&(can_check_section'=true)&(m'=1)+ 
+        p_structure_checkable*(1 - p_gas_presence) * p_structure_stable : (gas_present' = false) &
+ 		(structure_stable' = true)&(can_check_section'=true)&(m'=1) + 
+        p_structure_checkable*(1 - p_gas_presence) * (1 - p_structure_stable) : (gas_present' = false) &
+ 		(structure_stable' = false)&(can_check_section'=true)&(m'=1)+
+        (1-p_structure_checkable)*p_gas_presence * p_structure_stable : (gas_present' = true) &
+		 (structure_stable' = true)&(can_check_section'=false)&(m'=1) + 
+         (1-p_structure_checkable)*p_gas_presence * (1 - p_structure_stable) : (gas_present' = true) &
+ 		(structure_stable' = false)&(can_check_section'=false)&(m'=1)+ 
+         (1-p_structure_checkable)*(1 - p_gas_presence) * p_structure_stable : (gas_present' = false) &
+ 		(structure_stable' = true)&(can_check_section'=false)&(m'=1) + 
+         (1-p_structure_checkable)*(1 - p_gas_presence) * (1 - p_structure_stable) : (gas_present' = false) &
+ 		(structure_stable' = false)&(can_check_section'=false)&(m'=1);  
  
     [next_section] (section_index < total_sections)&(m=1) -> (section_index' = section_index + 1)&(m'=0); 
 endmodule 
@@ -76,14 +83,15 @@ module lead_robot
  
     [checkconnection] (z=4) & (lead_retry_count >= max_retries) ->  
         (z'=6) & (lead_retry_count'=0);
-
-    [](current_energy_lead < min_energy_lead)->(z'=6) ;
+    
+    [](current_energy_lead < min_energy_lead)->(z'=6);
    
     [out_lead_recovery](z=6)->(z'=5)&(current_energy_lead'=100)&(send_data'=true);
     
     [] (current_speed_lead > max_speed_lead) -> (current_speed_lead' = max_speed_lead); 
 
-    [next_section] (z=5) & (section < total_sections) -> (section' = section + 1) & (z'=0)&(structure_safe_flag' = false)&(send_data'=false); 
+    [next_section] (z=5) & (section < total_sections) -> (section' = section + 1) & (z'=0)&
+			(structure_safe_flag' = false)&(send_data'=false); 
 endmodule
 
 
@@ -118,7 +126,8 @@ module gas_detection_robot
         (current_speed_gas_detector' = max_speed_gas_detector);
 
     [next_section] (x=3) & (section_gas_check < total_sections) -> 
-        (section_gas_check' = section_gas_check + 1) & (x'=0)&(gas_detected_flag' = false)&(send_gas_data'=false); 
+        (section_gas_check' = section_gas_check + 1) & (x'=0)&(gas_detected_flag' = false)
+					&(send_gas_data'=false); 
 endmodule 
 
 module safety_assessment_robot 
@@ -165,9 +174,6 @@ module leader_robot
     current_energy_leader : [0..100] init 100; 
     wait : [0..40] init 0;
 
-  
-   
-   
     [wait_to_get_from_lead](send_data=false) & (current_section < total_sections) & (k=0)&(wait<20)->(wait'=wait+1);
     [wait_to_get_from_lead](send_data=false)  & (current_section < total_sections)&(k=0)&(wait>=20)->(wait'=0)&(k'=6);
     

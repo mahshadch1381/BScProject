@@ -1,222 +1,302 @@
-action step section_index gas_present structure_stable can_check_section m z section structure_safe_flag distance_to_leader lead_retry_count current_speed_lead current_energy_lead send_data section_gas_check gas_detected_flag send_gas_data x distance_gas_detector_to_leader current_speed_gas_detector current_energy_gas_detector section_safety_check structure_ok_flag send_structure_data distance_safety_assessment_to_leader y current_speed_safe_detector current_energy_safe_detector current_section section_safe_to_check section_safe leader_retry_count sending_flag connection_success k current_speed_leader current_energy_leader wait
-- 0 0 false true false 0 0 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 1 0 false true false 0 0 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 2 0 false true false 0 0 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 3 0 false true false 0 0 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 3
-[wait_to_get_from_lead] 4 0 false true false 0 0 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 4
-[initialize_section1] 5 0 true true true 1 1 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 4
-[wait_to_get_from_lead] 6 0 true true true 1 1 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 5
-[wait_to_get_from_lead] 7 0 true true true 1 1 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 6
-[check_distance] 8 0 true true true 1 2 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 6
-[check_env] 9 0 true true true 1 3 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 6
-[lead_safe_signal1] 10 0 true true true 1 4 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 6
-[wait_to_get_from_lead] 11 0 true true true 1 4 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 7
-[wait_to_get_from_lead] 12 0 true true true 1 4 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 8
-[wait_to_get_from_lead] 13 0 true true true 1 4 0 true 20 0 20 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 9
-[checkconnection] 14 0 true true true 1 5 0 true 20 0 20 100 true 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 9
-[lead_safe_signal] 15 0 true true true 1 5 0 true 20 0 20 100 true 0 false false 0 20 20 100 0 true false 20 0 20 100 0 true false 0 false false 1 20 100 9
-[initialize_section] 16 0 true true true 1 5 0 true 20 0 20 100 true 0 false false 1 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 9
-[check_distance_gas_detecter] 17 0 true true true 1 5 0 true 20 0 20 100 true 0 false false 2 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 9
-[check_gas] 18 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 9
-[wait_to_get] 19 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 10
-[wait_to_get] 20 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 11
-[wait_to_get] 21 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 12
-[check_distance_safety_assessment] 22 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true false 20 2 20 100 0 true false 0 false false 1 20 100 12
-[wait_to_get] 23 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true false 20 2 20 100 0 true false 0 false false 1 20 100 13
-[check_safety] 24 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true false 0 false false 1 20 100 13
-[safe_signal12] 25 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true true 0 true false 3 20 100 13
-[send_data] 26 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true true 1 true false 3 20 100 13
-[send_data] 27 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true true 2 true false 3 20 100 13
-[send_data] 28 0 true true true 1 5 0 true 20 0 20 100 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true true 0 true true 4 20 100 13
-[next_section] 29 1 true true true 0 0 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 30 1 true true true 0 0 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 31 1 true true true 0 0 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 2
-[initialize_section1] 32 1 false true false 1 1 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 2
-[check_distance] 33 1 false true false 1 2 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 2
-[check_env] 34 1 false true false 1 3 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 2
-[lead_unsafe_signal1] 35 1 false true false 1 4 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 36 1 false true false 1 4 1 false 20 0 20 100 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 3
-[checkconnection] 37 1 false true false 1 5 1 false 20 0 20 100 true 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 3
-[lead_unsafe_signal] 38 1 false true false 1 5 1 false 20 0 20 100 true 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 2 20 100 3
-[initialize_section] 39 1 false true false 1 5 1 false 20 0 20 100 true 1 false false 1 20 20 100 1 true false 20 1 20 100 1 false false 0 false false 2 20 100 3
-gas_detection_robot 40 1 false true false 1 5 1 false 20 0 20 100 true 1 false false 3 20 20 100 1 true false 20 1 20 100 1 false false 0 false false 2 20 100 3
-safety_assessment_robot 41 1 false true false 1 5 1 false 20 0 20 100 true 1 false false 3 20 20 100 1 true false 20 3 20 100 1 false false 0 false false 2 20 100 3
-[next_section] 42 2 false true false 0 0 2 false 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 43 2 false true false 0 0 2 false 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 1
-[initialize_section1] 44 2 false true true 1 1 2 false 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 1
-[check_distance] 45 2 false true true 1 2 2 false 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 46 2 false true true 1 2 2 false 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 47 2 false true true 1 2 2 false 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 3
-[check_env] 48 2 false true true 1 3 2 true 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 3
-[wait_to_get_from_lead] 49 2 false true true 1 3 2 true 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
-[lead_safe_signal1] 50 2 false true true 1 4 2 true 20 0 20 100 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
-[checkconnection] 51 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
-[lead_safe_signal] 52 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 true false 0 false false 1 20 100 4
-[wait_to_get] 53 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 true false 0 false false 1 20 100 5
-[wait_to_get] 54 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 true false 0 false false 1 20 100 6
-[wait_to_get] 55 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 true false 0 false false 1 20 100 7
-[initialize_section] 56 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 1 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 7
-[wait_to_get] 57 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 1 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 8
-[wait_to_get] 58 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 1 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 9
-[wait_to_get] 59 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 1 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 10
-[check_distance_gas_detecter] 60 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 2 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 10
-[wait_to_get] 61 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 2 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 11
-[check_distance_safety_assessment] 62 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 2 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 11
-[wait_to_get] 63 2 false true true 1 5 2 true 20 0 20 100 true 2 false false 2 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 12
-[check_gas] 64 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 12
-[wait_to_get] 65 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 13
-[wait_to_get] 66 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 14
-[check_safety] 67 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 false false 1 20 100 14
-[safe_signal12] 68 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true true 20 3 20 100 2 true true 0 true false 3 20 100 14
-[send_data] 69 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true true 20 3 20 100 2 true true 1 true false 3 20 100 14
-[send_data] 70 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true true 20 3 20 100 2 true true 2 true false 3 20 100 14
-[send_data] 71 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true true 20 3 20 100 2 true true 3 true false 3 20 100 14
-[send_failure] 72 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true true 20 3 20 100 2 true true 3 false false 5 20 100 14
-[outrecovery] 73 2 false true true 1 5 2 true 20 0 20 100 true 2 false true 3 20 20 100 2 true true 20 3 20 100 2 true true 3 false true 4 20 100 14
-[next_section] 74 3 false true true 0 0 3 false 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 0
-[initialize_section1] 75 3 false true true 1 1 3 false 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 76 3 false true true 1 1 3 false 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 1
-[check_distance] 77 3 false true true 1 2 3 false 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 78 3 false true true 1 2 3 false 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 79 3 false true true 1 2 3 false 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 3
-[check_env] 80 3 false true true 1 3 3 true 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 3
-[wait_to_get_from_lead] 81 3 false true true 1 3 3 true 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 4
-[lead_safe_signal1] 82 3 false true true 1 4 3 true 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 4
-[wait_to_get_from_lead] 83 3 false true true 1 4 3 true 20 0 20 100 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 5
-[checkconnection] 84 3 false true true 1 5 3 true 20 0 20 100 true 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 5
-[lead_safe_signal] 85 3 false true true 1 5 3 true 20 0 20 100 true 3 false false 0 20 20 100 3 true false 20 0 20 100 3 true false 0 false false 1 20 100 5
-[initialize_section] 86 3 false true true 1 5 3 true 20 0 20 100 true 3 false false 1 20 20 100 3 true false 20 1 20 100 3 true false 0 false false 1 20 100 5
-[check_distance_safety_assessment] 87 3 false true true 1 5 3 true 20 0 20 100 true 3 false false 1 20 20 100 3 true false 20 2 20 100 3 true false 0 false false 1 20 100 5
-[check_safety] 88 3 false true true 1 5 3 true 20 0 20 100 true 3 false false 1 20 20 100 3 true true 20 3 20 100 3 true false 0 false false 1 20 100 5
-[check_distance_gas_detecter] 89 3 false true true 1 5 3 true 20 0 20 100 true 3 false false 2 20 20 100 3 true true 20 3 20 100 3 true false 0 false false 1 20 100 5
-[check_gas] 90 3 false true true 1 5 3 true 20 0 20 100 true 3 false true 3 20 20 100 3 true true 20 3 20 100 3 true false 0 false false 1 20 100 5
-[safe_signal12] 91 3 false true true 1 5 3 true 20 0 20 100 true 3 false true 3 20 20 100 3 true true 20 3 20 100 3 true true 0 true false 3 20 100 5
-[send_data] 92 3 false true true 1 5 3 true 20 0 20 100 true 3 false true 3 20 20 100 3 true true 20 3 20 100 3 true true 1 true false 3 20 100 5
-[send_data] 93 3 false true true 1 5 3 true 20 0 20 100 true 3 false true 3 20 20 100 3 true true 20 3 20 100 3 true true 0 true true 4 20 100 5
-[next_section] 94 4 false true true 0 0 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 0
-[initialize_section1] 95 4 true true true 1 1 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 96 4 true true true 1 1 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 97 4 true true true 1 1 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 98 4 true true true 1 1 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 3
-[wait_to_get_from_lead] 99 4 true true true 1 1 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 4
-[check_distance] 100 4 true true true 1 2 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 4
-[wait_to_get_from_lead] 101 4 true true true 1 2 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 5
-[check_env] 102 4 true true true 1 3 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 5
-[wait_to_get_from_lead] 103 4 true true true 1 3 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 6
-[wait_to_get_from_lead] 104 4 true true true 1 3 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 7
-[lead_unsafe_signal1] 105 4 true true true 1 4 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 7
-[wait_to_get_from_lead] 106 4 true true true 1 4 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 8
-[wait_to_get_from_lead] 107 4 true true true 1 4 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 9
-[wait_to_get_from_lead] 108 4 true true true 1 4 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 10
-[wait_to_get_from_lead] 109 4 true true true 1 4 4 false 20 0 20 100 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 11
-[checkconnection] 110 4 true true true 1 5 4 false 20 0 20 100 true 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 11
-[lead_unsafe_signal] 111 4 true true true 1 5 4 false 20 0 20 100 true 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 2 20 100 11
-[initialize_section] 112 4 true true true 1 5 4 false 20 0 20 100 true 4 false false 1 20 20 100 4 true false 20 1 20 100 4 false false 0 false false 2 20 100 11
-[check_distance_safety_assessment] 113 4 true true true 1 5 4 false 20 0 20 100 true 4 false false 1 20 20 100 4 true false 20 2 20 100 4 false false 0 false false 2 20 100 11
-gas_detection_robot 114 4 true true true 1 5 4 false 20 0 20 100 true 4 false false 3 20 20 100 4 true false 20 2 20 100 4 false false 0 false false 2 20 100 11
-[check_safety] 115 4 true true true 1 5 4 false 20 0 20 100 true 4 false false 3 20 20 100 4 true true 20 3 20 100 4 false false 0 false false 2 20 100 11
-[next_section] 116 5 true true true 0 0 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 0
-[initialize_section1] 117 5 true true true 1 1 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 118 5 true true true 1 1 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 119 5 true true true 1 1 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 120 5 true true true 1 1 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 3
-[wait_to_get_from_lead] 121 5 true true true 1 1 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 4
-[wait_to_get_from_lead] 122 5 true true true 1 1 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 5
-[check_distance] 123 5 true true true 1 2 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 5
-[wait_to_get_from_lead] 124 5 true true true 1 2 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 6
-[wait_to_get_from_lead] 125 5 true true true 1 2 5 false 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
-[check_env] 126 5 true true true 1 3 5 true 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
-[lead_safe_signal1] 127 5 true true true 1 4 5 true 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
-[checkconnection] 128 5 true true true 1 4 5 true 20 1 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
-[wait_to_get_from_lead] 129 5 true true true 1 4 5 true 20 1 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 8
-[wait_to_get_from_lead] 130 5 true true true 1 4 5 true 20 1 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 9
-[checkconnection] 131 5 true true true 1 4 5 true 20 2 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 9
-[checkconnection] 132 5 true true true 1 4 5 true 20 3 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 9
-[wait_to_get_from_lead] 133 5 true true true 1 4 5 true 20 3 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 10
-[checkconnection] 134 5 true true true 1 6 5 true 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 10
-[wait_to_get_from_lead] 135 5 true true true 1 6 5 true 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 11
-[wait_to_get_from_lead] 136 5 true true true 1 6 5 true 20 0 20 100 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 12
-[out_lead_recovery] 137 5 true true true 1 5 5 true 20 0 20 100 true 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 12
-[lead_safe_signal] 138 5 true true true 1 5 5 true 20 0 20 100 true 5 false false 0 20 20 100 5 true false 20 0 20 100 5 true false 0 false false 1 20 100 12
-[initialize_section] 139 5 true true true 1 5 5 true 20 0 20 100 true 5 false false 1 20 20 100 5 true false 20 1 20 100 5 true false 0 false false 1 20 100 12
-[check_distance_safety_assessment] 140 5 true true true 1 5 5 true 20 0 20 100 true 5 false false 1 20 20 100 5 true false 20 2 20 100 5 true false 0 false false 1 20 100 12
-[check_distance_gas_detecter] 141 5 true true true 1 5 5 true 20 0 20 100 true 5 false false 2 20 20 100 5 true false 20 2 20 100 5 true false 0 false false 1 20 100 12
-[check_gas] 142 5 true true true 1 5 5 true 20 0 20 100 true 5 true true 3 20 20 100 5 true false 20 2 20 100 5 true false 0 false false 1 20 100 12
-[check_safety] 143 5 true true true 1 5 5 true 20 0 20 100 true 5 true true 3 20 20 100 5 true true 20 3 20 100 5 true false 0 false false 1 20 100 12
-[unsafe_signal12] 144 5 true true true 1 5 5 true 20 0 20 100 true 5 true true 3 20 20 100 5 true true 20 3 20 100 5 true false 0 true false 3 20 100 12
-[send_data] 145 5 true true true 1 5 5 true 20 0 20 100 true 5 true true 3 20 20 100 5 true true 20 3 20 100 5 true false 0 true true 4 20 100 12
-[next_section] 146 6 true true true 0 0 6 false 20 0 20 100 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 147 6 true true true 0 0 6 false 20 0 20 100 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 1
-[initialize_section1] 148 6 true true true 1 1 6 false 20 0 20 100 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 1
-[check_distance] 149 6 true true true 1 2 6 false 20 0 20 100 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 1
-[check_env] 150 6 true true true 1 3 6 false 20 0 20 100 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 151 6 true true true 1 3 6 false 20 0 20 100 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 2
-[lead_unsafe_signal1] 152 6 true true true 1 4 6 false 20 0 20 100 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 2
-[checkconnection] 153 6 true true true 1 5 6 false 20 0 20 100 true 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 2
-[lead_unsafe_signal] 154 6 true true true 1 5 6 false 20 0 20 100 true 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 2 20 100 2
-[initialize_section] 155 6 true true true 1 5 6 false 20 0 20 100 true 6 false false 1 20 20 100 6 true false 20 1 20 100 6 false false 0 false false 2 20 100 2
-[check_distance_safety_assessment] 156 6 true true true 1 5 6 false 20 0 20 100 true 6 false false 1 20 20 100 6 true false 20 2 20 100 6 false false 0 false false 2 20 100 2
-gas_detection_robot 157 6 true true true 1 5 6 false 20 0 20 100 true 6 false false 3 20 20 100 6 true false 20 2 20 100 6 false false 0 false false 2 20 100 2
-[check_safety] 158 6 true true true 1 5 6 false 20 0 20 100 true 6 false false 3 20 20 100 6 false true 20 3 20 100 6 false false 0 false false 2 20 100 2
-[next_section] 159 7 true true true 0 0 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 0
-[initialize_section1] 160 7 true true true 1 1 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 161 7 true true true 1 1 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 1
-[check_distance] 162 7 true true true 1 2 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 1
-[check_env] 163 7 true true true 1 3 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 164 7 true true true 1 3 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 2
-[lead_unsafe_signal1] 165 7 true true true 1 4 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 166 7 true true true 1 4 7 false 20 0 20 100 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
-[checkconnection] 167 7 true true true 1 5 7 false 20 0 20 100 true 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
-[lead_unsafe_signal] 168 7 true true true 1 5 7 false 20 0 20 100 true 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 2 20 100 3
-[initialize_section] 169 7 true true true 1 5 7 false 20 0 20 100 true 7 false false 1 20 20 100 7 true false 20 1 20 100 7 false false 0 false false 2 20 100 3
-[check_distance_gas_detecter] 170 7 true true true 1 5 7 false 20 0 20 100 true 7 false false 2 20 20 100 7 true false 20 1 20 100 7 false false 0 false false 2 20 100 3
-[check_gas] 171 7 true true true 1 5 7 false 20 0 20 100 true 7 true true 3 20 20 100 7 true false 20 1 20 100 7 false false 0 false false 2 20 100 3
-safety_assessment_robot 172 7 true true true 1 5 7 false 20 0 20 100 true 7 true true 3 20 20 100 7 true false 20 3 20 100 7 false false 0 false false 2 20 100 3
-[next_section] 173 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 174 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 175 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 176 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 3
-[wait_to_get_from_lead] 177 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 4
-[wait_to_get_from_lead] 178 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 5
-[wait_to_get_from_lead] 179 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 6
-[wait_to_get_from_lead] 180 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 7
-[wait_to_get_from_lead] 181 8 true true true 0 0 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 8
-[initialize_section1] 182 8 true true true 1 1 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 8
-[wait_to_get_from_lead] 183 8 true true true 1 1 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 9
-[wait_to_get_from_lead] 184 8 true true true 1 1 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 10
-[wait_to_get_from_lead] 185 8 true true true 1 1 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 11
-[check_distance] 186 8 true true true 1 2 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 11
-[check_env] 187 8 true true true 1 3 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 11
-[lead_unsafe_signal1] 188 8 true true true 1 4 8 false 20 0 20 100 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 11
-[checkconnection] 189 8 true true true 1 5 8 false 20 0 20 100 true 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 11
-[lead_unsafe_signal] 190 8 true true true 1 5 8 false 20 0 20 100 true 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 2 20 100 11
-[initialize_section] 191 8 true true true 1 5 8 false 20 0 20 100 true 8 false false 1 20 20 100 8 true false 20 1 20 100 8 false false 0 false false 2 20 100 11
-gas_detection_robot 192 8 true true true 1 5 8 false 20 0 20 100 true 8 false false 3 20 20 100 8 true false 20 1 20 100 8 false false 0 false false 2 20 100 11
-[check_distance_safety_assessment] 193 8 true true true 1 5 8 false 20 0 20 100 true 8 false false 3 20 20 100 8 true false 20 2 20 100 8 false false 0 false false 2 20 100 11
-[check_safety] 194 8 true true true 1 5 8 false 20 0 20 100 true 8 false false 3 20 20 100 8 true true 20 3 20 100 8 false false 0 false false 2 20 100 11
-[next_section] 195 9 true true true 0 0 9 false 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 0
-[initialize_section1] 196 9 true true true 1 1 9 false 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 0
-[wait_to_get_from_lead] 197 9 true true true 1 1 9 false 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 1
-[wait_to_get_from_lead] 198 9 true true true 1 1 9 false 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 2
-[check_distance] 199 9 true true true 1 2 9 false 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 2
-[check_env] 200 9 true true true 1 3 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 2
-[wait_to_get_from_lead] 201 9 true true true 1 3 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 3
-[wait_to_get_from_lead] 202 9 true true true 1 3 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 4
-[wait_to_get_from_lead] 203 9 true true true 1 3 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 5
-[lead_safe_signal1] 204 9 true true true 1 4 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 5
-[wait_to_get_from_lead] 205 9 true true true 1 4 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 6
-[wait_to_get_from_lead] 206 9 true true true 1 4 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 7
-[wait_to_get_from_lead] 207 9 true true true 1 4 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 8
-[wait_to_get_from_lead] 208 9 true true true 1 4 9 true 20 0 20 100 false 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 9
-[checkconnection] 209 9 true true true 1 5 9 true 20 0 20 100 true 9 false false 0 20 20 100 9 true false 20 0 20 100 9 false false 0 false false 0 20 100 9
-[lead_safe_signal] 210 9 true true true 1 5 9 true 20 0 20 100 true 9 false false 0 20 20 100 9 true false 20 0 20 100 9 true false 0 false false 1 20 100 9
-[initialize_section] 211 9 true true true 1 5 9 true 20 0 20 100 true 9 false false 1 20 20 100 9 true false 20 1 20 100 9 true false 0 false false 1 20 100 9
-[wait_to_get] 212 9 true true true 1 5 9 true 20 0 20 100 true 9 false false 1 20 20 100 9 true false 20 1 20 100 9 true false 0 false false 1 20 100 10
-[check_distance_safety_assessment] 213 9 true true true 1 5 9 true 20 0 20 100 true 9 false false 1 20 20 100 9 true false 20 2 20 100 9 true false 0 false false 1 20 100 10
-[wait_to_get] 214 9 true true true 1 5 9 true 20 0 20 100 true 9 false false 1 20 20 100 9 true false 20 2 20 100 9 true false 0 false false 1 20 100 11
-[check_distance_gas_detecter] 215 9 true true true 1 5 9 true 20 0 20 100 true 9 false false 2 20 20 100 9 true false 20 2 20 100 9 true false 0 false false 1 20 100 11
-[check_gas] 216 9 true true true 1 5 9 true 20 0 20 100 true 9 true true 3 20 20 100 9 true false 20 2 20 100 9 true false 0 false false 1 20 100 11
-[check_safety] 217 9 true true true 1 5 9 true 20 0 20 100 true 9 true true 3 20 20 100 9 true true 20 3 20 100 9 true false 0 false false 1 20 100 11
-[unsafe_signal12] 218 9 true true true 1 5 9 true 20 0 20 100 true 9 true true 3 20 20 100 9 true true 20 3 20 100 9 true false 0 true false 3 20 100 11
-[send_data] 219 9 true true true 1 5 9 true 20 0 20 100 true 9 true true 3 20 20 100 9 true true 20 3 20 100 9 true false 0 true true 4 20 100 11
-[next_section] 220 10 true true true 0 0 10 false 20 0 20 100 false 10 false false 0 20 20 100 10 true false 20 0 20 100 10 false false 0 false false 0 20 100 0
+action step section_index gas_present structure_stable can_check_section m z section structure_safe_flag distance_to_leader lead_retry_count current_speed_lead current_energy_lead current_energy_lead2 send_data section_gas_check gas_detected_flag send_gas_data x distance_gas_detector_to_leader current_speed_gas_detector current_energy_gas_detector section_safety_check structure_ok_flag send_structure_data distance_safety_assessment_to_leader y current_speed_safe_detector current_energy_safe_detector current_section section_safe_to_check section_safe leader_retry_count sending_flag connection_success k current_speed_leader current_energy_leader wait
+- 0 0 false true false 0 0 0 true 20 0 20 100 100 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 0
+lead_robot 1 0 false true false 0 0 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 2 0 false true false 0 0 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 1
+lead_robot 3 0 false true false 0 0 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 1
+[initialize_section1] 4 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 5 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 6 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 7 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 8 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 9 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 10 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 11 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 12 0 true true true 1 1 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+[check_distance] 13 0 true true true 1 2 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 14 0 true true true 1 2 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+[check_env] 15 0 true true true 1 3 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+lead_robot 16 0 true true true 1 3 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+[lead_safe_signal1] 17 0 true true true 1 4 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 18 0 true true true 1 4 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 3
+[wait_to_get_from_lead] 19 0 true true true 1 4 0 true 20 0 20 100 101 false 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 4
+[checkconnection] 20 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 0 20 20 100 0 true false 20 0 20 100 0 false false 0 false false 0 20 100 4
+[lead_safe_signal] 21 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 0 20 20 100 0 true false 20 0 20 100 0 true false 0 false false 1 20 100 4
+[wait_to_get] 22 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 0 20 20 100 0 true false 20 0 20 100 0 true false 0 false false 1 20 100 5
+[initialize_section] 23 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 1 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 5
+[wait_to_get] 24 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 1 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 6
+lead_robot 25 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 1 20 20 100 0 true false 20 1 20 100 0 true false 0 false false 1 20 100 6
+[check_distance_safety_assessment] 26 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 1 20 20 100 0 true false 20 2 20 100 0 true false 0 false false 1 20 100 6
+[wait_to_get] 27 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 1 20 20 100 0 true false 20 2 20 100 0 true false 0 false false 1 20 100 7
+[check_safety] 28 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 1 20 20 100 0 true true 20 3 20 100 0 true false 0 false false 1 20 100 7
+lead_robot 29 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 1 20 20 100 0 true true 20 3 20 100 0 true false 0 false false 1 20 100 7
+[check_distance_gas_detecter] 30 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false false 2 20 20 100 0 true true 20 3 20 100 0 true false 0 false false 1 20 100 7
+[check_gas] 31 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true false 0 false false 1 20 100 7
+lead_robot 32 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true false 0 false false 1 20 100 7
+[safe_signal12] 33 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true true 0 true false 3 20 100 7
+[send_data] 34 0 true true true 1 5 0 true 20 0 20 100 101 true 0 false true 3 20 20 100 0 true true 20 3 20 100 0 true true 0 true true 4 20 100 7
+[next_section] 35 1 true true true 0 0 1 false 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 0
+[initialize_section1] 36 1 true true true 1 1 1 false 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 0
+[check_distance] 37 1 true true true 1 2 1 false 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 0
+[check_env] 38 1 true true true 1 3 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 0
+lead_robot 39 1 true true true 1 3 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 40 1 true true true 1 3 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 1
+[lead_safe_signal1] 41 1 true true true 1 4 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 1
+lead_robot 42 1 true true true 1 4 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 43 1 true true true 1 4 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 2
+lead_robot 44 1 true true true 1 4 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 45 1 true true true 1 4 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 3
+[wait_to_get_from_lead] 46 1 true true true 1 4 1 true 20 0 20 100 101 false 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 4
+[checkconnection] 47 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 0 20 20 100 1 true false 20 0 20 100 1 false false 0 false false 0 20 100 4
+[lead_safe_signal] 48 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 0 20 20 100 1 true false 20 0 20 100 1 true false 0 false false 1 20 100 4
+[wait_to_get] 49 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 0 20 20 100 1 true false 20 0 20 100 1 true false 0 false false 1 20 100 5
+[initialize_section] 50 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 1 20 20 100 1 true false 20 1 20 100 1 true false 0 false false 1 20 100 5
+[check_distance_safety_assessment] 51 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 1 20 20 100 1 true false 20 2 20 100 1 true false 0 false false 1 20 100 5
+[check_safety] 52 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 1 20 20 100 1 false true 20 3 20 100 1 true false 0 false false 1 20 100 5
+lead_robot 53 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 1 20 20 100 1 false true 20 3 20 100 1 true false 0 false false 1 20 100 5
+[check_distance_gas_detecter] 54 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 2 20 20 100 1 false true 20 3 20 100 1 true false 0 false false 1 20 100 5
+[wait_to_get] 55 1 true true true 1 5 1 true 20 0 20 100 101 true 1 false false 2 20 20 100 1 false true 20 3 20 100 1 true false 0 false false 1 20 100 6
+[check_gas] 56 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 false false 1 20 100 6
+lead_robot 57 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 false false 1 20 100 6
+lead_robot 58 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 false false 1 20 100 6
+[unsafe_signal12] 59 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true false 3 20 100 6
+lead_robot 60 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true false 3 20 100 6
+lead_robot 61 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true false 3 20 100 6
+[send_data] 62 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+lead_robot 63 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+lead_robot 64 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+lead_robot 65 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+lead_robot 66 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+lead_robot 67 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+lead_robot 68 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+lead_robot 69 1 true true true 1 5 1 true 20 0 20 100 101 true 1 true true 3 20 20 100 1 false true 20 3 20 100 1 true false 0 true true 4 20 100 6
+[next_section] 70 2 true true true 0 0 2 false 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 71 2 true true true 0 0 2 false 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 72 2 true true true 0 0 2 false 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 2
+[initialize_section1] 73 2 true true true 1 1 2 false 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 2
+[check_distance] 74 2 true true true 1 2 2 false 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 2
+[check_env] 75 2 true true true 1 3 2 true 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 76 2 true true true 1 3 2 true 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 3
+[wait_to_get_from_lead] 77 2 true true true 1 3 2 true 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
+[lead_safe_signal1] 78 2 true true true 1 4 2 true 20 0 20 100 101 false 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
+[checkconnection] 79 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
+lead_robot 80 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
+lead_robot 81 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
+lead_robot 82 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 false false 0 false false 0 20 100 4
+[lead_safe_signal] 83 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 true false 0 false false 1 20 100 4
+lead_robot 84 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 0 20 20 100 2 true false 20 0 20 100 2 true false 0 false false 1 20 100 4
+[initialize_section] 85 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 1 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 4
+lead_robot 86 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 1 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 4
+[check_distance_gas_detecter] 87 2 true true true 1 5 2 true 20 0 20 100 101 true 2 false false 2 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 4
+[check_gas] 88 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true false 20 1 20 100 2 true false 0 false false 1 20 100 4
+[check_distance_safety_assessment] 89 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 4
+lead_robot 90 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 4
+lead_robot 91 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true false 20 2 20 100 2 true false 0 false false 1 20 100 4
+[check_safety] 92 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 false false 1 20 100 4
+lead_robot 93 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 false false 1 20 100 4
+lead_robot 94 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 false false 1 20 100 4
+lead_robot 95 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 false false 1 20 100 4
+[unsafe_signal12] 96 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 true false 3 20 100 4
+lead_robot 97 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 true false 3 20 100 4
+lead_robot 98 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 true false 3 20 100 4
+[send_data] 99 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 true true 4 20 100 4
+lead_robot 100 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 true true 4 20 100 4
+lead_robot 101 2 true true true 1 5 2 true 20 0 20 100 101 true 2 true true 3 20 20 100 2 true true 20 3 20 100 2 true false 0 true true 4 20 100 4
+[next_section] 102 3 true true true 0 0 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 0
+[initialize_section1] 103 3 true true true 1 1 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 0
+lead_robot 104 3 true true true 1 1 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 105 3 true true true 1 1 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 106 3 true true true 1 1 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+[check_distance] 107 3 true true true 1 2 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+lead_robot 108 3 true true true 1 2 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+[check_env] 109 3 true true true 1 3 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+lead_robot 110 3 true true true 1 3 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+lead_robot 111 3 true true true 1 3 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+[lead_unsafe_signal1] 112 3 true true true 1 4 3 false 20 0 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+[checkconnection] 113 3 true true true 1 4 3 false 20 1 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+lead_robot 114 3 true true true 1 4 3 false 20 1 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+lead_robot 115 3 true true true 1 4 3 false 20 1 20 100 101 false 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+[checkconnection] 116 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+lead_robot 117 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 0 20 100 2
+[lead_unsafe_signal] 118 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 2 20 100 2
+lead_robot 119 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 0 20 20 100 3 true false 20 0 20 100 3 false false 0 false false 2 20 100 2
+[initialize_section] 120 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 1 20 20 100 3 true false 20 1 20 100 3 false false 0 false false 2 20 100 2
+lead_robot 121 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 1 20 20 100 3 true false 20 1 20 100 3 false false 0 false false 2 20 100 2
+safety_assessment_robot 122 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 1 20 20 100 3 true false 20 3 20 100 3 false false 0 false false 2 20 100 2
+[check_distance_gas_detecter] 123 3 true true true 1 5 3 false 20 0 20 100 101 true 3 false false 2 20 20 100 3 true false 20 3 20 100 3 false false 0 false false 2 20 100 2
+[check_gas] 124 3 true true true 1 5 3 false 20 0 20 100 101 true 3 true true 3 20 20 100 3 true false 20 3 20 100 3 false false 0 false false 2 20 100 2
+lead_robot 125 3 true true true 1 5 3 false 20 0 20 100 101 true 3 true true 3 20 20 100 3 true false 20 3 20 100 3 false false 0 false false 2 20 100 2
+[next_section] 126 4 true true true 0 0 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 127 4 true true true 0 0 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 1
+[initialize_section1] 128 4 true true true 1 1 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 129 4 true true true 1 1 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 2
+[check_distance] 130 4 true true true 1 2 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 2
+lead_robot 131 4 true true true 1 2 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 132 4 true true true 1 2 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 3
+lead_robot 133 4 true true true 1 2 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 3
+lead_robot 134 4 true true true 1 2 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 3
+lead_robot 135 4 true true true 1 2 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 3
+[wait_to_get_from_lead] 136 4 true true true 1 2 4 false 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 4
+[check_env] 137 4 true true true 1 3 4 true 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 4
+[wait_to_get_from_lead] 138 4 true true true 1 3 4 true 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 5
+[lead_safe_signal1] 139 4 true true true 1 4 4 true 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 5
+[wait_to_get_from_lead] 140 4 true true true 1 4 4 true 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 6
+[wait_to_get_from_lead] 141 4 true true true 1 4 4 true 20 0 20 100 101 false 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 7
+[checkconnection] 142 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 7
+lead_robot 143 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 7
+lead_robot 144 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 0 20 20 100 4 true false 20 0 20 100 4 false false 0 false false 0 20 100 7
+[lead_safe_signal] 145 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 0 20 20 100 4 true false 20 0 20 100 4 true false 0 false false 1 20 100 7
+[initialize_section] 146 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 1 20 20 100 4 true false 20 1 20 100 4 true false 0 false false 1 20 100 7
+[check_distance_gas_detecter] 147 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 2 20 20 100 4 true false 20 1 20 100 4 true false 0 false false 1 20 100 7
+[check_distance_safety_assessment] 148 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 2 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 7
+lead_robot 149 4 true true true 1 5 4 true 20 0 20 100 101 true 4 false false 2 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 7
+[check_gas] 150 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 7
+[wait_to_get] 151 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 8
+lead_robot 152 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 8
+[wait_to_get] 153 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 9
+lead_robot 154 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 9
+[wait_to_get] 155 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 10
+[wait_to_get] 156 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 11
+lead_robot 157 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 11
+lead_robot 158 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 11
+[wait_to_get] 159 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 12
+[wait_to_get] 160 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true false 20 2 20 100 4 true false 0 false false 1 20 100 13
+[check_safety] 161 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 false false 1 20 100 13
+[unsafe_signal12] 162 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true false 3 20 100 13
+lead_robot 163 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true false 3 20 100 13
+lead_robot 164 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true false 3 20 100 13
+lead_robot 165 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true false 3 20 100 13
+lead_robot 166 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true false 3 20 100 13
+lead_robot 167 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true false 3 20 100 13
+[send_data] 168 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 1 true false 3 20 100 13
+lead_robot 169 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 1 true false 3 20 100 13
+lead_robot 170 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 1 true false 3 20 100 13
+[send_data] 171 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true true 4 20 100 13
+lead_robot 172 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true true 4 20 100 13
+lead_robot 173 4 true true true 1 5 4 true 20 0 20 100 101 true 4 true true 3 20 20 100 4 true true 20 3 20 100 4 true false 0 true true 4 20 100 13
+[next_section] 174 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 0
+lead_robot 175 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 0
+lead_robot 176 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 177 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 1
+lead_robot 178 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 179 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 2
+lead_robot 180 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 2
+lead_robot 181 5 true true true 0 0 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 2
+[initialize_section1] 182 5 false true true 1 1 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 183 5 false true true 1 1 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 3
+[check_distance] 184 5 false true true 1 2 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 3
+[wait_to_get_from_lead] 185 5 false true true 1 2 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 4
+lead_robot 186 5 false true true 1 2 5 false 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 4
+[check_env] 187 5 false true true 1 3 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 4
+[wait_to_get_from_lead] 188 5 false true true 1 3 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 5
+[wait_to_get_from_lead] 189 5 false true true 1 3 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 6
+lead_robot 190 5 false true true 1 3 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 6
+[wait_to_get_from_lead] 191 5 false true true 1 3 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
+lead_robot 192 5 false true true 1 3 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
+lead_robot 193 5 false true true 1 3 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
+[lead_safe_signal1] 194 5 false true true 1 4 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
+lead_robot 195 5 false true true 1 4 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 7
+[wait_to_get_from_lead] 196 5 false true true 1 4 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 8
+[wait_to_get_from_lead] 197 5 false true true 1 4 5 true 20 0 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 9
+[checkconnection] 198 5 false true true 1 4 5 true 20 1 20 100 101 false 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 9
+[checkconnection] 199 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 0 20 20 100 5 true false 20 0 20 100 5 false false 0 false false 0 20 100 9
+[lead_safe_signal] 200 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 0 20 20 100 5 true false 20 0 20 100 5 true false 0 false false 1 20 100 9
+lead_robot 201 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 0 20 20 100 5 true false 20 0 20 100 5 true false 0 false false 1 20 100 9
+lead_robot 202 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 0 20 20 100 5 true false 20 0 20 100 5 true false 0 false false 1 20 100 9
+[initialize_section] 203 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 1 20 20 100 5 true false 20 1 20 100 5 true false 0 false false 1 20 100 9
+[check_distance_gas_detecter] 204 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 2 20 20 100 5 true false 20 1 20 100 5 true false 0 false false 1 20 100 9
+[check_distance_safety_assessment] 205 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 2 20 20 100 5 true false 20 2 20 100 5 true false 0 false false 1 20 100 9
+lead_robot 206 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 2 20 20 100 5 true false 20 2 20 100 5 true false 0 false false 1 20 100 9
+[check_safety] 207 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false false 2 20 20 100 5 true true 20 3 20 100 5 true false 0 false false 1 20 100 9
+[check_gas] 208 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true false 0 false false 1 20 100 9
+lead_robot 209 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true false 0 false false 1 20 100 9
+lead_robot 210 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true false 0 false false 1 20 100 9
+lead_robot 211 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true false 0 false false 1 20 100 9
+[safe_signal12] 212 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true true 0 true false 3 20 100 9
+lead_robot 213 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true true 0 true false 3 20 100 9
+lead_robot 214 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true true 0 true false 3 20 100 9
+[send_data] 215 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true true 0 true true 4 20 100 9
+lead_robot 216 5 false true true 1 5 5 true 20 0 20 100 101 true 5 false true 3 20 20 100 5 true true 20 3 20 100 5 true true 0 true true 4 20 100 9
+[next_section] 217 6 false true true 0 0 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 0
+[initialize_section1] 218 6 true true true 1 1 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 0
+lead_robot 219 6 true true true 1 1 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 0
+lead_robot 220 6 true true true 1 1 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 0
+lead_robot 221 6 true true true 1 1 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 0
+[check_distance] 222 6 true true true 1 2 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 223 6 true true true 1 2 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 1
+[check_env] 224 6 true true true 1 3 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 225 6 true true true 1 3 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 2
+lead_robot 226 6 true true true 1 3 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 2
+[lead_unsafe_signal1] 227 6 true true true 1 4 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 228 6 true true true 1 4 6 false 20 0 20 100 101 false 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 3
+[checkconnection] 229 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 0 20 100 3
+[lead_unsafe_signal] 230 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 0 20 20 100 6 true false 20 0 20 100 6 false false 0 false false 2 20 100 3
+[initialize_section] 231 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 1 20 20 100 6 true false 20 1 20 100 6 false false 0 false false 2 20 100 3
+gas_detection_robot 232 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 3 20 20 100 6 true false 20 1 20 100 6 false false 0 false false 2 20 100 3
+lead_robot 233 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 3 20 20 100 6 true false 20 1 20 100 6 false false 0 false false 2 20 100 3
+lead_robot 234 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 3 20 20 100 6 true false 20 1 20 100 6 false false 0 false false 2 20 100 3
+safety_assessment_robot 235 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 3 20 20 100 6 true false 20 3 20 100 6 false false 0 false false 2 20 100 3
+lead_robot 236 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 3 20 20 100 6 true false 20 3 20 100 6 false false 0 false false 2 20 100 3
+lead_robot 237 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 3 20 20 100 6 true false 20 3 20 100 6 false false 0 false false 2 20 100 3
+lead_robot 238 6 true true true 1 5 6 false 20 0 20 100 101 true 6 false false 3 20 20 100 6 true false 20 3 20 100 6 false false 0 false false 2 20 100 3
+[next_section] 239 7 true true true 0 0 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 240 7 true true true 0 0 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 241 7 true true true 0 0 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 242 7 true true true 0 0 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+lead_robot 243 7 true true true 0 0 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+[initialize_section1] 244 7 true true true 1 1 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+[check_distance] 245 7 true true true 1 2 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+lead_robot 246 7 true true true 1 2 7 false 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+[check_env] 247 7 true true true 1 3 7 true 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+lead_robot 248 7 true true true 1 3 7 true 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+[lead_safe_signal1] 249 7 true true true 1 4 7 true 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 3
+[wait_to_get_from_lead] 250 7 true true true 1 4 7 true 20 0 20 100 101 false 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 4
+[checkconnection] 251 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 0 20 20 100 7 true false 20 0 20 100 7 false false 0 false false 0 20 100 4
+[lead_safe_signal] 252 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 0 20 20 100 7 true false 20 0 20 100 7 true false 0 false false 1 20 100 4
+[initialize_section] 253 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true false 20 1 20 100 7 true false 0 false false 1 20 100 4
+[wait_to_get] 254 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true false 20 1 20 100 7 true false 0 false false 1 20 100 5
+lead_robot 255 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true false 20 1 20 100 7 true false 0 false false 1 20 100 5
+[wait_to_get] 256 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true false 20 1 20 100 7 true false 0 false false 1 20 100 6
+[wait_to_get] 257 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true false 20 1 20 100 7 true false 0 false false 1 20 100 7
+[wait_to_get] 258 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true false 20 1 20 100 7 true false 0 false false 1 20 100 8
+[check_distance_safety_assessment] 259 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true false 20 2 20 100 7 true false 0 false false 1 20 100 8
+[check_safety] 260 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 1 20 20 100 7 true true 20 3 20 100 7 true false 0 false false 1 20 100 8
+[check_distance_gas_detecter] 261 7 true true true 1 5 7 true 20 0 20 100 101 true 7 false false 2 20 20 100 7 true true 20 3 20 100 7 true false 0 false false 1 20 100 8
+[check_gas] 262 7 true true true 1 5 7 true 20 0 20 100 101 true 7 true true 3 20 20 100 7 true true 20 3 20 100 7 true false 0 false false 1 20 100 8
+[unsafe_signal12] 263 7 true true true 1 5 7 true 20 0 20 100 101 true 7 true true 3 20 20 100 7 true true 20 3 20 100 7 true false 0 true false 3 20 100 8
+[send_data] 264 7 true true true 1 5 7 true 20 0 20 100 101 true 7 true true 3 20 20 100 7 true true 20 3 20 100 7 true false 0 true true 4 20 100 8
+[next_section] 265 8 true true true 0 0 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 0
+lead_robot 266 8 true true true 0 0 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 0
+lead_robot 267 8 true true true 0 0 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 0
+[wait_to_get_from_lead] 268 8 true true true 0 0 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 1
+[initialize_section1] 269 8 true true true 1 1 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 1
+[wait_to_get_from_lead] 270 8 true true true 1 1 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 2
+lead_robot 271 8 true true true 1 1 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 2
+[check_distance] 272 8 true true true 1 2 8 false 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 2
+[check_env] 273 8 true true true 1 3 8 true 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 2
+lead_robot 274 8 true true true 1 3 8 true 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 2
+lead_robot 275 8 true true true 1 3 8 true 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 2
+[wait_to_get_from_lead] 276 8 true true true 1 3 8 true 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 3
+[wait_to_get_from_lead] 277 8 true true true 1 3 8 true 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 4
+lead_robot 278 8 true true true 1 3 8 true 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 4
+[lead_safe_signal1] 279 8 true true true 1 4 8 true 20 0 20 100 101 false 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 4
+[checkconnection] 280 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 0 20 20 100 8 true false 20 0 20 100 8 false false 0 false false 0 20 100 4
+[lead_safe_signal] 281 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 0 20 20 100 8 true false 20 0 20 100 8 true false 0 false false 1 20 100 4
+lead_robot 282 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 0 20 20 100 8 true false 20 0 20 100 8 true false 0 false false 1 20 100 4
+[wait_to_get] 283 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 0 20 20 100 8 true false 20 0 20 100 8 true false 0 false false 1 20 100 5
+[initialize_section] 284 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true false 20 1 20 100 8 true false 0 false false 1 20 100 5
+[check_distance_safety_assessment] 285 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true false 20 2 20 100 8 true false 0 false false 1 20 100 5
+[wait_to_get] 286 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true false 20 2 20 100 8 true false 0 false false 1 20 100 6
+[wait_to_get] 287 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true false 20 2 20 100 8 true false 0 false false 1 20 100 7
+[check_safety] 288 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 7
+lead_robot 289 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 7
+lead_robot 290 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 7
+lead_robot 291 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 7
+lead_robot 292 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 7
+[wait_to_get] 293 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 8
+lead_robot 294 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 1 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 8
+[check_distance_gas_detecter] 295 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 2 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 8
+[wait_to_get] 296 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 2 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 9
+lead_robot 297 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 2 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 9
+[wait_to_get] 298 8 true true true 1 5 8 true 20 0 20 100 101 true 8 false false 2 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 10
+[check_gas] 299 8 true true true 1 5 8 true 20 0 20 100 101 true 8 true true 3 20 20 100 8 true true 20 3 20 100 8 true false 0 false false 1 20 100 10
+[unsafe_signal12] 300 8 true true true 1 5 8 true 20 0 20 100 101 true 8 true true 3 20 20 100 8 true true 20 3 20 100 8 true false 0 true false 3 20 100 10

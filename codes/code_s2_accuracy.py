@@ -8,7 +8,7 @@ constants = {
     "total_sections": 10,
     "max_retries": 3,
     "max_distance": 150,
-    "recovery_position": 33,
+   
     "p_gas_presence": 0.78,
     "p_structure_stable": 1,
     "p_structure_checkable": 0.89,
@@ -17,7 +17,7 @@ constants = {
     "p_structure_safe": 0.86,
     "p_send_success": 0.78,
     "p_send_success_lead": 0.86,
-    "p_send_success_gas_detector": 0.86,
+  
     "min_energy_lead": 10,
     "min_energy_gas_detector": 10,
     "min_energy_safe_detector": 10,
