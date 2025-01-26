@@ -8,17 +8,14 @@ constants = {
     "total_sections": 10,
     "max_retries": 3,
     "max_distance": 150,
-
-    "p_gas_presence":1,
+    "p_gas_presence": 1,
     "p_structure_stable": 0.96,
     "p_structure_checkable": 0.89,
-    
-    "p_explore_success": 0.7,
-    "p_gas_detect": 0.88,
-    "p_structure_safe": 0.86,
+    "p_explore_success": 0.95,
+    "p_gas_detect": 0.97,
+    "p_structure_safe": 0.95,
     "p_send_success": 0.78,
     "p_send_success_lead": 0.86,
-    
     "min_energy_lead": 10,
     "min_energy_gas_detector": 10,
     "min_energy_safe_detector": 10,
