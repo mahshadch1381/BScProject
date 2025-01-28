@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # File paths
 model_file = r"..\..\first_model.prism"
 properties_file = r"..\..\properties.props"
-cost_file_path = r"consts\consts6.txt"
+cost_file_path = r"consts\random_data.txt"
 
 
 def parse_cost_line(line):

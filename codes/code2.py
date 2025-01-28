@@ -10,20 +10,20 @@ def plot_results(result_data, output_file):
 
     # Plot Property 5
     plt.subplot(121)
-    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
+    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Max reward when "all robots ready" seen')
     plt.xlabel('p-explore-success')
     plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
-    plt.title('Probability of Success vs Max Reward')
+    plt.title('Success lead vs MaxReward "all robots ready"')
     plt.grid(True)
     plt.legend()
 
     # Table for Property 5
     plt.subplot(122)
     plt.axis('off')
-    columns = ["p-explore-success", "max reward"]
+    columns = ["p-explore-success", "max reward when all robots ready seen"]
     data = list(zip(result_data['group'], result_data['property_5']))
     plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
-    plt.title("p-explore-success, Max Reward")
+    plt.title("p-explore-success VS Max Reward all_robots_ready")
     plt.tight_layout()
 
     plt.savefig(output_file, format='png', dpi=300)
@@ -84,8 +84,8 @@ def plot_comparison(data1, data2, group_label, property_label, title, output_fil
 
     # Plot Comparison
     plt.subplot(121)
-    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='property5')
-    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='property7')
+    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='Max reward when "all robots ready" seen')
+    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='Max reward when "section not checkale" seen')
     plt.xlabel(group_label)
     plt.ylabel(property_label)
     plt.title(f"{title} (Graph)")
@@ -95,7 +95,7 @@ def plot_comparison(data1, data2, group_label, property_label, title, output_fil
     # Table for Comparison
     plt.subplot(122)
     plt.axis('off')
-    columns = [group_label, "maxReward5", "maxReward7", "Difference"]
+    columns = [group_label, "MaxRewardAllRobotsReady", "MaxRewardNotCheckable", "Difference"]
     table_data = [( data1['group'][i],  # p_gas_detect 
             data1['property'][i],  # Reward for Property 5
             data2['property'][i],  # Reward for Property 7
@@ -133,4 +133,4 @@ plot_results(result_data, "plots/plot_results2.png")
 # Plotting the comparison
 data1 = {'group': result_data['group'], 'property': result_data['property_5']}
 data2 = {'group': result_data['group'], 'property': result_data['property_7']}
-plot_comparison(data1, data2, "p-explore-success", "Max Reward", "Comparison of Properties 5 and 7", "plots/plot_comparison_result2.png")
+plot_comparison(data1, data2, "p-explore-success", "Max Reward", "Comparison of max reward in different conditions", "plots/plot_comparison_result2.png")

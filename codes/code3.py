@@ -58,22 +58,22 @@ def check_values_line(line):
 
 
 
-def extract_results_from_output(output, p_explore_success, result_data, counter_group):
+def extract_results_from_output(output, p_gas_detect, result_data, counter_group):
     """Extracts and processes results from PRISM's output."""
     property_number = 1
     for line in output.splitlines():
         if "Result" in line:
             print(f"Result for cost group {counter_group}, property {property_number}: {line}")
-            process_property_result(line, property_number, p_explore_success, result_data)
+            process_property_result(line, property_number, p_gas_detect, result_data)
             property_number += 1
 
 
 
-def process_property_result(line, property_number, p_explore_success, result_data):
+def process_property_result(line, property_number, p_gas_detect, result_data):
     """Processes a single property result and updates the result_data."""
     if property_number == 5:
         property_5 = float(line.split(":")[1].strip())
-        result_data['group'].append(p_explore_success)
+        result_data['group'].append(p_gas_detect)
         result_data['property_5'].append(property_5)
     elif property_number == 7:
         property_7 = float(line.split(":")[1].strip())

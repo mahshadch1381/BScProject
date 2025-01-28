@@ -77,7 +77,7 @@ plt.figure(figsize=(10, 6))
 
 # Plot Property 5
 plt.subplot(121)
-plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
+plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Max reward when "all robots ready" seen')
 plt.xlabel('Total Sections')
 plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
 plt.title('total sections vs max reward')
@@ -87,7 +87,7 @@ plt.legend()
 # Table for Property 5
 plt.subplot(122)
 plt.axis('off')
-columns = ["Total Sections", "Property 5"]
+columns = ["Total Sections", "all robots ready max rewards"]
 data = list(zip(result_data['group'], result_data['property_5']))
 plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
 plt.title("Property 5 Values")
