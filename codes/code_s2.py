@@ -53,8 +53,8 @@ param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
 
 model_file = r"..\..\first_model.prism"
 properties_file = r"..\..\properties.props"
-simulation_output_file = r"tables\simulation_output2.txt"
-simulation_output_file_save = r"..\..\tables\simulation_output2.txt"
+simulation_output_file = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output2.txt"
+simulation_output_file_save =  r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output2.txt"
 
 
 prism_command = [
@@ -132,7 +132,7 @@ try:
     df_selected = df[selected_columns]
 
 
-    output_file = r"\tables\selected_data_table2.txt"
+    output_file =  r"C:\Aterm9\Karshensi_Project\all\tables\selected_data_table2.txt"
     df_selected.to_csv(output_file, index=False, sep='\t')
 
     print("Selected data has been saved as a formatted table.")
