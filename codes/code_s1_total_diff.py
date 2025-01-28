@@ -56,7 +56,7 @@ for total_sections in total_sections_values:
         section_safe_to_check = set()
         structure_ok_flag_false = set()
         gas_detected_flag_true = set()
-        section_safe_true = set()
+        sections = set()
 
       
         with open(simulation_output_file, 'r') as file:
@@ -77,15 +77,17 @@ for total_sections in total_sections_values:
                 fields = line.strip().split()
 
                 current_section = fields[current_section_idx]
+
                 section_safe_to_check_flag = fields[section_safe_to_check_ind] == "true"
 
                 gas_detected_flag = fields[gas_detected_flag_idx] == "true"
 
 
                 # (ToTD)
-                if gas_detected_flag:
+                if gas_detected_flag and current_section not in sections:
                     todt_values.append(int(fields[1]))
                     gas_detected_flag_true.add((current_section, gas_detected_flag))
+                    sections.add(current_section)
 
                 if section_safe_to_check_flag:
                     section_safe_to_check.add((current_section, section_safe_to_check_flag))
