@@ -28,12 +28,10 @@ constants = {
 
 
 param_str = ",".join([f"{key}={value}" for key, value in constants.items()])
-
-
 model_file = r"..\..\first_model.prism"
 properties_file = r"..\..\properties.props"
-simulation_output_file = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_output1.txt"
 
+simulation_output_file = r"tables\simulation_output1.txt"
 
 prism_command = [
     r"cd", r"prism-4.8.1\bin", "&&", 
