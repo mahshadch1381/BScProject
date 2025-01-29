@@ -2,7 +2,8 @@ import subprocess
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from scipy.stats import ttest_ind, f_oneway
+import numpy as np
 # Initialize the constants
 constants1 = {
     "total_sections": 8,
@@ -75,10 +76,31 @@ simulation_output_file_accuracy = r"C:\Aterm9\Karshensi_Project\all\tables\simul
 simulation_output_file_accuracy2 = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_safety_t2.txt"
 simulation_output_file_accuracy3 = r"C:\Aterm9\Karshensi_Project\all\tables\simulation_safety_t3.txt"
 
+def simulate_data(accs, covs, num_scenarios=3, num_repeats=100):
+    data = []
+    np.random.seed(42)  # ثابت برای بازتولیدپذیری
+    
+    for scenario in range(num_scenarios):
+        accuracy = accs[scenario]
+        coverage = covs[scenario]
+        for i in range(num_repeats):
+            safety = 0.5 * accuracy[i] + 0.5 * coverage[i]  # شاخص Safety
+            data.append({
+                'Scenario': f'Scenario {scenario + 1}',
+                'Accuracy': accuracy[i],
+                'Coverage': coverage[i],
+                'Safety': safety
+            })
+
+    return pd.DataFrame(data)
+
 # Accuracy storage
-safety1 = []
-safety2 = []
-safety3 = []
+accuracy1=[]
+covearage1=[]
+accuracy2 = []
+covearage2=[]
+accuracy3 = []
+covearage3=[]
 
 try:
     param_str = ",".join([f"{key}={value}" for key, value in constants1.items()])
@@ -115,6 +137,8 @@ try:
         accuracy = detected_count / total_sections
         max_section = max([int(line.strip().split()[section_idx]) for line in lines[1:]])
         coveragerate=max_section/ total_sections
+        accuracy1.append(accuracy)
+        covearage1.append(coveragerate)
         print(f"Run {run + 1}: Accuracy = {accuracy:.2f}")
     #--------------------------------------------------------------------
     param_str = ",".join([f"{key}={value}" for key, value in constants2.items()])
@@ -152,8 +176,9 @@ try:
         max_section = max([int(line.strip().split()[section_idx]) for line in lines[1:]])
         # Calculate 1 - accuracy
         inverted_accuracy = 1 - accuracy
-    
+        accuracy2.append(inverted_accuracy)
         coveragerate=max_section/ total_sections
+        covearage2.append(coveragerate)
         print(f"Run {run + 1}: Accuracy = {inverted_accuracy:.2f}")
     #--------------------------------------------------------------------
     param_str = ",".join([f"{key}={value}" for key, value in constants3.items()])        
@@ -191,10 +216,60 @@ try:
         # Store accuracy
         max_section = max([int(line.strip().split()[section_idx]) for line in lines[1:]])
         coveragerate=max_section/ total_sections
+        accuracy3.append(accuracy)
+        covearage3.append(coveragerate)
         print(f"Run {run + 1}: Accuracy = {accuracy:.2f}")
     # تبدیل داده‌ها به DataFrame برای رسم
 
-         
+    acc = [accuracy1, accuracy2, accuracy3]
+    cov = [covearage1, covearage2, covearage3]
+    num_scenarios = 3
+    num_repeats = 100  #
+
+    data = simulate_data(acc, cov, num_scenarios, num_repeats)
+
+    # محاسبه میانگین، انحراف معیار، و خطای استاندارد
+    summary_stats = data.groupby('Scenario').agg(
+        Mean_Safety=('Safety', 'mean'),
+        Std_Safety=('Safety', 'std'),
+        Std_Error=('Safety', lambda x: x.std() / np.sqrt(len(x)))
+    ).reset_index()
+
+    print("\nSummary Statistics:")
+    print(summary_stats)
+
+    # آزمون‌های آماری
+    scenario_1 = data[data['Scenario'] == 'Scenario 1']['Safety']
+    scenario_2 = data[data['Scenario'] == 'Scenario 2']['Safety']
+    scenario_3 = data[data['Scenario'] == 'Scenario 3']['Safety']
+
+    # تی‌تست بین سناریوها
+    t_stat_12, p_value_12 = ttest_ind(scenario_1, scenario_2)
+    t_stat_13, p_value_13 = ttest_ind(scenario_1, scenario_3)
+
+    # آزمون ANOVA برای همه سناریوها
+    anova_stat, anova_p_value = f_oneway(scenario_1, scenario_2, scenario_3)
+
+    print("\nT-Test Results:")
+    print(f"Scenario 1 vs Scenario 2: T-statistic = {t_stat_12:.2f}, P-value = {p_value_12:.4f}")
+    print(f"Scenario 1 vs Scenario 3: T-statistic = {t_stat_13:.2f}, P-value = {p_value_13:.4f}")
+
+    print("\nANOVA Test Results:")
+    print(f"F-statistic = {anova_stat:.2f}, P-value = {anova_p_value:.4f}")
+
+        # رسم نمودار جعبه‌ای برای مقایسه شاخص Safety
+    plt.figure(figsize=(8, 6))
+    data.boxplot(column='Safety', by='Scenario', grid=False, patch_artist=True, 
+            boxprops=dict(facecolor='lightblue', color='blue'),
+            medianprops=dict(color='red'))
+    plt.title('Safety Index Comparison by Scenario')
+    plt.suptitle('')  # حذف عنوان پیش‌فرض
+    plt.xlabel('Scenario')
+    plt.ylabel('Safety')
+    plt.tight_layout()
+    plt.savefig(r"plots\plot_safety.png", dpi=300, format="png", bbox_inches="tight")
+    plt.show()
+            
 except subprocess.CalledProcessError as e:
     print("Error during execution:", e)
     print(e.output)

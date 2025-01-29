@@ -9,7 +9,7 @@ constants = {
     "max_retries": 3,
     "max_distance": 150,
     "p_gas_presence":0.78,
-    "p_structure_stable": 1,
+    "p_structure_stable": 1,## or 0
     "p_structure_checkable": 0.89,
     "p_explore_success": 0.95,
     "p_gas_detect": 0.97,

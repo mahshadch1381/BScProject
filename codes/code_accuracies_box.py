@@ -88,26 +88,19 @@ try:
             r"prism.bat", model_file, properties_file, "-const", param_str,
             "-simpath", "300", simulation_output_file_accuracy
         ]
-
         subprocess.run(' '.join(prism_command), shell=True, capture_output=True, text=True, check=True)
-
         gas_detected_flag_true = set()
-
         with open(simulation_output_file_accuracy, 'r') as file:
             lines = file.readlines()
-
             columns = lines[0].strip().split()
             current_section_idx = columns.index("current_section")
             gas_detected_flag_idx = columns.index("gas_detected_flag")
-
             for line in lines[1:]:
                 fields = line.strip().split()
                 current_section = fields[current_section_idx]
                 gas_detected_flag = fields[gas_detected_flag_idx] == "true"
-
                 if gas_detected_flag:
                     gas_detected_flag_true.add(current_section)
-
         # Calculate accuracy
         detected_count = len(gas_detected_flag_true)
         total_sections = constants1["total_sections"]
@@ -122,31 +115,23 @@ try:
             r"prism.bat", model_file, properties_file, "-const", param_str,
             "-simpath", "300", simulation_output_file_accuracy2
         ]
-
         subprocess.run(' '.join(prism_command), shell=True, capture_output=True, text=True, check=True)
-
         structure_ok_flag_false = set()
-
         with open(simulation_output_file_accuracy2, 'r') as file:
             lines = file.readlines()
-
             columns = lines[0].strip().split()
             current_section_idx = columns.index("current_section")
             structure_ok_flag_idx = columns.index("structure_ok_flag")
-
             for line in lines[1:]:
                 fields = line.strip().split()
                 current_section = fields[current_section_idx]
                 structure_ok_flag = fields[structure_ok_flag_idx] == "false"
-
                 if structure_ok_flag:
                     structure_ok_flag_false.add(current_section)
-
         # Calculate accuracy for structure_ok_flag = false
         false_flag_count = len(structure_ok_flag_false)
         total_sections = constants2["total_sections"]
         accuracy = false_flag_count / total_sections
-
         # Calculate 1 - accuracy
         inverted_accuracy = 1 - accuracy
         inverted_accuracies.append(inverted_accuracy)

@@ -37,7 +37,7 @@ P>=1 [ F "area_checked" ]
 
 P>=1 [ F "all_robots_ready" ]
 
-P=? [ F "failure"| "low_energy" ]
+P=? [ F "failure"]
 
 
 

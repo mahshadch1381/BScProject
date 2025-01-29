@@ -74,7 +74,7 @@ def plot_property_5(result_data, output_file):
 
     # Plot Property 5
     plt.subplot(121)
-    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
+    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Max reward when "all robots ready" seen')
     plt.xlabel('p_send_success_lead')
     plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
     plt.title('Probability of Successful Send in Lead vs Max Reward')
@@ -84,12 +84,12 @@ def plot_property_5(result_data, output_file):
     # Table for Property 5
     plt.subplot(122)
     plt.axis('off')
-    table_columns = ["p_send_success_lead", "Max Reward (Property 5)"]
+    table_columns = ["p_send_success_lead",  "MaxRewardAllRobotsReady"]
     table_data = list(zip(result_data['group'], result_data['property_5']))
     table = plt.table(cellText=table_data, colLabels=table_columns, loc='center', cellLoc='center')
     table.auto_set_font_size(False)
     table.set_fontsize(10)  # Adjust the font size here
-    plt.title("p_send_success_lead vs Max Reward")
+    plt.title("p_send_success_lead VS Max Reward all_robots_ready")
 
     plt.tight_layout()
     plt.savefig(output_file, format='png', dpi=300)
@@ -101,11 +101,11 @@ def plot_comparison_with_tables(result_data, output_file):
 
     # Plot comparison
     plt.subplot(121)
-    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
-    plt.plot(result_data['group'], result_data['property_7'], marker='s', color='r', label='Property 7')
+    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Max reward when "all robots ready" seen')
+    plt.plot(result_data['group'], result_data['property_7'], marker='s', color='r',  label='Max reward when "section not checkale" seen')
     plt.xlabel('p_send_success_lead')
-    plt.ylabel('Reward')
-    plt.title('Comparison of Property 5 and Property 7')
+    plt.ylabel('Max reward ')
+    plt.title("Comparison of max reward in different conditions")
     plt.grid(True)
     plt.legend()
 
@@ -113,7 +113,7 @@ def plot_comparison_with_tables(result_data, output_file):
     plt.subplot(122)
     plt.axis('off')
 
-    table_columns = ["p_send_success_lead", "Reward(Property 5)", "Reward(Property 7)", "Difference"]
+    table_columns = ["p_send_success_lead",  "MaxRewardAllRobotsReady", "MaxRewardNotCheckable", "Difference"]
     table_data = [
         (
             result_data['group'][i],
@@ -133,7 +133,7 @@ def plot_comparison_with_tables(result_data, output_file):
     table.auto_set_font_size(False)
     table.set_fontsize(10)  # Adjust font size
     table.scale(1.2, 1.4)  # Adjust table scaling
-    plt.title("Comparison Table: Property 5 vs Property 7 with Difference")
+    plt.title("Comparison of max reward in different conditions Table")
     plt.tight_layout()
     plt.savefig(output_file, format='png', dpi=300)
     plt.close()
