@@ -16,8 +16,8 @@ def get_parameter(key_value):
 def plot_comparison(data1, data2, group_label, property_label, title, output_file):
     plt.figure(figsize=(16, 8))
     plt.subplot(121)
-    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='Property 5')
-    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='Property 7')
+    plt.plot(data1['group'], data1['property'], marker='o', color='b', label='Max reward when "all robots ready" seen')
+    plt.plot(data2['group'], data2['property'], marker='x', color='r', label='Max reward when "section not checkale" seen')
     plt.xlabel(group_label)
     plt.ylabel(property_label)
     plt.title(f"{title} (Graph)")
@@ -31,7 +31,7 @@ def plot_comparison(data1, data2, group_label, property_label, title, output_fil
     ]
     plt.subplot(122)
     plt.axis('off')
-    columns = [group_label, "Reward (Property 5)", "Reward (Property 7)", "Difference"]
+    columns = [group_label, "MaxRewardAllRobotsReady", "MaxRewardNotCheckable", "Difference"]
     table = plt.table(
         cellText=table_data,
         colLabels=columns,
@@ -41,7 +41,7 @@ def plot_comparison(data1, data2, group_label, property_label, title, output_fil
     table.auto_set_font_size(False)
     table.set_fontsize(10)  # Adjust font size
     table.scale(1.2, 1.4)  # Adjust table scaling
-    plt.title("Comparison Table: Property 5 vs Property 7 with Difference")
+    plt.title( "Comparison of max reward in different conditions")
     plt.tight_layout()
     plt.savefig(output_file, format='png', dpi=300)
     plt.close()
@@ -87,7 +87,7 @@ def plot_results(result_data, output_file):
 
     # Plot Property 5
     plt.subplot(121)
-    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Property 5')
+    plt.plot(result_data['group'], result_data['property_5'], marker='o', color='b', label='Max reward when "all robots ready" seen')
     plt.xlabel('p_gas_detect')
     plt.ylabel('Max reward for :F "area_checked" {"all_robots_ready"}')
     plt.title('Probability of Success of the Gas Detector vs Max Reward')
@@ -98,10 +98,10 @@ def plot_results(result_data, output_file):
     # Table for Property 5
     plt.subplot(122)
     plt.axis('off')
-    columns = ["p_gas_detect", "max reward"]
+    columns = ["p_gas_detect", "MaxRewardAllRobotsReady"]
     data = list(zip(result_data['group'], result_data['property_5']))
     plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center', fontsize=9)
-    plt.title("p_gas_detect, Max Reward")
+    plt.title("p_gas_detect VS Max Reward all_robots_ready")
     plt.tight_layout()
 
     plt.savefig(output_file, format='png', dpi=300)
@@ -136,7 +136,7 @@ with open(cost_file_path, 'r') as cost_file:
 
 data1 = {'group': result_data['group'], 'property': result_data['property_5']}
 data2 = {'group': result_data['group'], 'property': result_data['property_7']}
-plot_comparison(data1, data2, "p_gas_detect", "Max Reward", "Comparison of Properties 5 and 7", "plots/plot_comparison_result3.png")
+plot_comparison(data1, data2, "p_gas_detect", 'Max reward ', "Comparison of max reward in different conditions", "plots/plot_comparison_result3.png")
 
 # Plot results
 output_file = "plots/plot_results3.png"

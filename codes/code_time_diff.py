@@ -32,16 +32,14 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data, maxs, mins,
     ]
 
     try:
-        max_value = 0  # تغییر نام متغیر
-        min_value = sys.maxsize  # تغییر نام متغیر
+        max_value = 0  
+        min_value = sys.maxsize  
         sum_value = 0
-        for run in range(20): 
+        for run in range(100): 
             subprocess.run(' '.join(prism_command), shell=True, capture_output=True, text=True, check=True)
-
             with open(simulation_output_file, 'r') as file:
                 lines = file.readlines()
                 total_section = cost_group["total_sections"]
-                # استفاده از max_value به جای max
                 max_step = max([int(line.strip().split()[1]) for line in lines[1:]])
                 print(max_step)
                 if max_step > max_value:
@@ -49,10 +47,10 @@ def run_prism_with_cost_group(cost_group, counterGroup, result_data, maxs, mins,
                 if max_step < min_value:
                     min_value = max_step
                 sum_value += max_step
-            if run == 19:
+            if run == 99:
                 maxs.append(max_value)
                 mins.append(min_value)
-                avgs.append(sum_value /20)   
+                avgs.append(sum_value /100)   
                 result_data['group'].append(total_section)     
             print(f"here {total_section} and step: {max_step}\n")
     except subprocess.CalledProcessError as e:

@@ -90,7 +90,7 @@ plt.axis('off')
 columns = ["Total Sections", "all robots ready max rewards"]
 data = list(zip(result_data['group'], result_data['property_5']))
 plt.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
-plt.title("Property 5 Values")
+plt.title("max rewards if all robots ready Values")
 
 plt.tight_layout()
 plt.savefig("plots/plot_results1.png", format='png', dpi=300)

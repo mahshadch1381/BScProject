@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 model_file = r"..\..\first_model.prism"
 properties_file = r"..\..\properties.props"
-cost_file_path = r"consts\consts2.txt"
+cost_file_path = r"consts\consts9.txt"
 
 def plot_grouped_results(grouped_data, output_file):
     plt.figure(figsize=(10, 6))
